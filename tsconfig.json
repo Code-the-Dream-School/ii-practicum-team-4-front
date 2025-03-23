@@ -4,6 +4,8 @@
         "target": "ES5",
         "lib": ["dom", "es2017"],
         "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "noEmit": true,
+        "allowImportingTsExtensions": true
     }
 }
