@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
  
 // note: not used, but could be used with GET with params
- const getData = async (url, params) => {
+ const getData = async (url: string, params: AxiosRequestConfig<any> | undefined) => {
     try {
       let res = await axios.get(url, params);
       let data = await res.data;
@@ -11,7 +11,7 @@ import axios from "axios";
     }
   };
 
-  const getAllData = async (url) => {
+  const getAllData = async (url: string) => {
     try {
       let res = await axios.get(url);
       let data = await res.data;
