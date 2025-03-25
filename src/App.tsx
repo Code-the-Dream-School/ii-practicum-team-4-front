@@ -1,14 +1,15 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
-import ProductPage from './pages/ProductPage';
-import AboutUsPage from './pages/AboutUs';
-import ProduceCategoryPage from './pages/ProduceCategoryPage';
+import ShopPage from './pages/ShopPage';
+import AboutPage from './pages/AboutPage';
+import OrderHistoryPage from './pages/OrderHistoryPage';
 import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
-import ContactPage from './pages/ContactPage';
 import ThankYouPage from './pages/ThankYouPage';
-import FAQPage from './pages/FAQPage';
-
+import NotFoundPage from './pages/404NotFound';
+import SignInPage from './pages/SignInPage';
+import SignUpPage from './pages/SignUpPage';
+import AccountPage from './pages/AccountPage';
 
 const App = () => {
  return (
@@ -19,13 +20,13 @@ const App = () => {
             element={<HomePage />}
           />
         <Route
-          path="/products"
-          element={<ProductPage />
+          path="/shop"
+          element={<ShopPage />
           }
         />
         <Route
           path="/about"
-          element={<AboutUsPage />
+          element={<AboutPage />
           }
         />
         <Route
@@ -39,13 +40,13 @@ const App = () => {
           }
         />
         <Route
-          path="/contact"
-          element={<ContactPage />
+          path="/account"
+          element={<AccountPage />
           }
         />
         <Route
-          path="/produce-category"
-          element={<ProduceCategoryPage />
+          path="/order-history"
+          element={<OrderHistoryPage />
           }
         />
         <Route
@@ -54,8 +55,18 @@ const App = () => {
           }
         />
         <Route
-          path="/faq"
-          element={<FAQPage />
+          path="/404"
+          element={<NotFoundPage />
+          }
+        />
+        <Route
+          path="/sign-in"
+          element={<SignInPage />
+          }
+        />
+        <Route
+          path="/sign-up"
+          element={<SignUpPage />
           }
         />
       </Routes>
