@@ -1,3 +1,50 @@
-/node_modules
-.DS_STORE
-.gitignore
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# TypeScript
+*.tsbuildinfo
+
+# IDEs and editors
+.vscode/
+
+# TailwindCSS cache
+.tailwindcss/
+
+# dotenv environment variables file
+.env
+.env.local
+.env.*.local
+
+# React (Create React App)
+*.js.map
+*.css.map
+
+# Testing
+coverage/
+*.test.ts
+*.test.tsx
+
+# Build artifacts and caches
+*.tgz
+
+# Lock files
+package-lock.json
+
+# other
+.DS_Store
+
+
+# Build output ?
+# build/
+# dist/
