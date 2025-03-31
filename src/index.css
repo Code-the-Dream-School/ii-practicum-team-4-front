@@ -1,1 +1,20 @@
 @import "tailwindcss";
+
+@theme {
+  --color-background: oklch(0.94 0.0335 88.06); /* #F4EAD2 (основной фон) */
+  --color-primary: oklch(
+    0.34 0.0713 164.63
+  ); /* #02442F (основной темный текст/акцент) */
+  --color-secondary: oklch(0.54 0.033 145.1); /* #647564 (вторичный текст) */
+  --color-light: oklch(
+    0.94 0.0335 88.06
+  ); /* #F4EAD2 (светлый текст/элементы) */
+
+  --color-success: oklch(
+    0.49 0.1331 149.54
+  ); /* #067332 (успех, подтверждение) */
+  --color-error: oklch(0.65 0.2027 35.52); /* #EF5024 (ошибка, опасность) */
+  --color-warning: oklch(0.83 0.1693 81.57); /* #FDB90A (предупреждение) */
+
+  --color-primary-light: oklch(0.94 0.0335 88.06); /* Светлая версия primary */
+}
