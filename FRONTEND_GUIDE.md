@@ -45,6 +45,7 @@ Each feature gets its own folder, even if it only has one file. This makes the p
 ```
 
 > **Why this is bad:**
+
 - Everything is mixed together.
 - You can't easily tell which components are reusable and which are tied to a specific feature.
 - As the app grows, it gets harder to maintain and refactor.
@@ -68,8 +69,9 @@ Each feature gets its own folder, even if it only has one file. This makes the p
 - Use `clsx` if you need conditional classes.
 
 ### Example:
+
 ```jsx
-<button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+<button className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
   Submit
 </button>
 ```

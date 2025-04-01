@@ -12,66 +12,23 @@ import SignUpPage from './pages/SignUpPage';
 import AccountPage from './pages/AccountPage';
 
 const App = () => {
- return (
+  return (
     <BrowserRouter>
       <Routes>
-        <Route
-            path="/"
-            element={<HomePage />}
-          />
-        <Route
-          path="/shop"
-          element={<ShopPage />
-          }
-        />
-        <Route
-          path="/about"
-          element={<AboutPage />
-          }
-        />
-        <Route
-          path="/cart"
-          element={<CartPage />
-          }
-        />
-        <Route
-          path="/checkout"
-          element={<CheckoutPage />
-          }
-        />
-        <Route
-          path="/account"
-          element={<AccountPage />
-          }
-        />
-        <Route
-          path="/order-history"
-          element={<OrderHistoryPage />
-          }
-        />
-        <Route
-          path="/thanku"
-          element={<ThankYouPage />
-          }
-        />
-        <Route
-          path="/404"
-          element={<NotFoundPage />
-          }
-        />
-        <Route
-          path="/sign-in"
-          element={<SignInPage />
-          }
-        />
-        <Route
-          path="/sign-up"
-          element={<SignUpPage />
-          }
-        />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/shop" element={<ShopPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/account" element={<AccountPage />} />
+        <Route path="/order-history" element={<OrderHistoryPage />} />
+        <Route path="/thanku" element={<ThankYouPage />} />
+        <Route path="/404" element={<NotFoundPage />} />
+        <Route path="/sign-in" element={<SignInPage />} />
+        <Route path="/sign-up" element={<SignUpPage />} />
       </Routes>
-    </BrowserRouter>  
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
