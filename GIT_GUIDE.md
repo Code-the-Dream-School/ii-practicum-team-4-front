@@ -13,15 +13,17 @@ type/short-description
 ```
 
 ### Types:
-| Type      | Use for                            |
-|-----------|------------------------------------|
-| `feature` | New features                       |
-| `fix`     | Bug fixes                          |
-| `chore`   | Small tasks (e.g. config, updates) |
-| `refactor`| Code cleanup, no feature change    |
-| `hotfix`  | Urgent fixes on production         |
+
+| Type       | Use for                            |
+| ---------- | ---------------------------------- |
+| `feature`  | New features                       |
+| `fix`      | Bug fixes                          |
+| `chore`    | Small tasks (e.g. config, updates) |
+| `refactor` | Code cleanup, no feature change    |
+| `hotfix`   | Urgent fixes on production         |
 
 ### Examples:
+
 - `feature/login-page`
 - `fix/header-overlap`
 - `chore/update-eslint-config`
@@ -39,17 +41,19 @@ type: short description
 ```
 
 ### Types:
-| Type       | Use for                                      |
-|------------|----------------------------------------------|
-| `feat:`    | New features                                 |
-| `fix:`     | Bug fixes                                    |
-| `chore:`   | Minor tasks or non-feature changes           |
-| `refactor:`| Code restructuring (no behavior changes)     |
-| `style:`   | Formatting only (indentation, spacing, etc.) |
-| `docs:`    | README or documentation updates              |
-| `test:`    | Adding or updating tests                     |
+
+| Type        | Use for                                      |
+| ----------- | -------------------------------------------- |
+| `feat:`     | New features                                 |
+| `fix:`      | Bug fixes                                    |
+| `chore:`    | Minor tasks or non-feature changes           |
+| `refactor:` | Code restructuring (no behavior changes)     |
+| `style:`    | Formatting only (indentation, spacing, etc.) |
+| `docs:`     | README or documentation updates              |
+| `test:`     | Adding or updating tests                     |
 
 ### Examples:
+
 - `feat: add login form`
 - `fix: resolve button alignment issue`
 - `chore: install axios`
