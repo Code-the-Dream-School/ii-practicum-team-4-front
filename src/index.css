@@ -1,20 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+
 @import 'tailwindcss';
 
-@theme {
-  --color-background: oklch(0.94 0.0335 88.06); /* #F4EAD2 (basic background) */
-  --color-primary: oklch(
-    0.34 0.0713 164.63
-  ); /* #02442F (basic dark text/accent) */
-  --color-secondary: oklch(0.54 0.033 145.1); /* #647564 (secondary text) */
-  --color-light: oklch(0.94 0.0335 88.06); /* #F4EAD2 (light text/elements) */
+@layer base {
+  :root {
+    --color-background: oklch(0.94 0.0335 88.06); /* #F4EAD2 (basic background) */
+    --color-primary: oklch(0.34 0.0713 164.63); /* #02442F (basic dark text/accent) */
+    --color-secondary: oklch(0.54 0.033 145.1); /* #647564 (secondary text) */
+    --color-light: oklch(0.94 0.0335 88.06); /* #F4EAD2 (light text/elements) */
+    --color-success: oklch(0.49 0.1331 149.54); /* #067332 (success, validation) */
+    --color-error: oklch(0.65 0.2027 35.52); /* #EF5024 (error, danger) */
+    --color-warning: oklch(0.83 0.1693 81.57); /* #FDB90A (warning) */
+    --color-primary-light: oklch(0.94 0.0335 88.06); /* A lighter version of primary */
 
-  --color-success: oklch(
-    0.49 0.1331 149.54
-  ); /* #067332 (success, validation) */
-  --color-error: oklch(0.65 0.2027 35.52); /* #EF5024 (error, danger) */
-  --color-warning: oklch(0.83 0.1693 81.57); /* #FDB90A (warning) */
 
-  --color-primary-light: oklch(
-    0.94 0.0335 88.06
-  ); /* A lighter version of primary */
+    --font-heading: 'IBM Plex Serif', serif;
+    --font-subtext: 'Open Sans', sans-serif;
+  }
+
+  h1 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-align: center;
+  }
+  .subtext {
+    font-family: var(--font-subtext);
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-align: center;
+  }
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 273px; /* fixed */
+    height: 55px; 
+    padding: 14px 40px; 
+    font-family: var(--font-subtext);
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 30px; 
+    transition: background-color 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+
+  .btn-primary {
+    background-color: var(--color-error); 
+    color: white;
+  }
+
+  .btn-primary:hover {
+    opacity: 0.8; /* dimming effect when pointing */
+  }
 }
+
+
