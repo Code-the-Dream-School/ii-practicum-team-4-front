@@ -1,0 +1,59 @@
+@tailwind utilities;
+
+@theme: {
+    screens: {
+      'sm': '640px',
+      // => @media (min-width: 640px) { 
+        body {
+            @apply overflow-hidden;
+          }
+          .ham-menu {
+            @apply h-10 w-[75px] relative cursor-pointer p-[0.20rem];
+          }
+          .ham-menu:hover span {
+            @apply bg-[#067332];
+          }
+          .ham-menu span {
+            @apply absolute -translate-x-2/4 -translate-y-2/4 h-0.5 w-[70%] bg-[#067332] transition-[0.2s] duration-[ease] rounded-2xl left-2/4 top-2/4;
+          }
+          /*hamburger icon*/
+          .ham-menu span:nth-child(1) {
+            @apply top-1/4;
+          }
+          .ham-menu span:nth-child(3) {
+            @apply top-3/4;
+          }
+          .ham-menu.active span {
+            @apply bg-[#067332];
+          }
+          .ham-menu.active span:nth-child(1) {
+            @apply -translate-x-2/4 -translate-y-2/4 -rotate-45 w-[90%] top-[90%];
+          }
+          .ham-menu.active span:nth-child(2) {
+            @apply opacity-0;
+          }
+          .ham-menu.active span:nth-child(3) {
+            @apply -translate-x-2/4 -translate-y-2/4 rotate-45 w-[90%] top-[90%];
+          }
+          li {
+            @apply mx-0 my-5;
+          }
+          ul > li:nth-last-of-type(-n + 2) {
+            @apply inline mr-5;
+          }
+          ul > li:last-child {
+            @apply mr-2.5;
+          }
+    } 
+  
+      'md': '768px',
+      // => @media (min-width: 768px) { }
+  
+      'lg': '1024px',
+      // => @media (min-width: 1024px) { }
+  
+      'xl': '1280px',
+      // => @media (min-width: 1280px) { }
+    }
+  }
+

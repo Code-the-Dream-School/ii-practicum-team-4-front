@@ -1,10 +1,9 @@
-import { Link } from 'react-router-dom';
+import Header from '../components/Header/Header';
 
 const AboutPage = () => {
   return (
     <div className="about-page">
-      <h1>About</h1>
-      <Link to="/">Home</Link>
+      <Header></Header>
     </div>
   );
 };
