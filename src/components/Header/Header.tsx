@@ -61,9 +61,9 @@ const Header = () => {
 
       {/* Header */}
       <nav className="bg-background flex w-full justify-evenly py-6 md:p-6">
-        <div className="pt-2 pr-26 md:ml-12 md:mr-15">
+        <NavLink to="/" className="pt-2 pr-26 md:ml-12 md:mr-15">
           <img src={logo} alt="Logo"/>
-        </div>
+        </NavLink>
 
 
         {/* Inline menu for Desktop */}
