@@ -59,10 +59,11 @@ const Header = () => {
       </div>
 
       {/* Header */}
-      <nav className="bg-background flex w-full justify-evenly p-6">
-        <h3 className="text-primary h-24 w-100 font-serif text-4xl font-[550]">
+      <nav className="bg-background flex w-full justify-evenly py-6 md:p-6">
+        <h3 className="text-primary h-10 font-serif text-4xl font-[550] pr-26 md:ml-12 md:mr-15">
           Farm2You
         </h3>
+
 
         {/* Inline menu for Desktop */}
         <ul className="text-success hidden items-center gap-x-12 text-lg font-medium m-auto md:flex">
@@ -84,7 +85,7 @@ const Header = () => {
         </ul>
 
         {/** Cart and User buttons for Desktop navigation */}
-        <div className="hidden md:flex ml-auto mr-10 gap-8">
+        <div className="hidden md:flex ml-auto mr-12 gap-8">
           <button>
             <NavLink to="/account">
               <UserIcon className="h-6 w-6" />
