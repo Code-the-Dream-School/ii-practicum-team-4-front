@@ -1,9 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
-import { CloseIcon } from './Close';
-import { HamburgerIcon } from './Hamburger';
-import { UserIcon } from './User';
-import { CartIcon } from './Cart';
+import burger from '../assets/images/icons/burger.svg';
+import close from '../assets/images/icons/close.svg';
+import cart from '../assets/images/icons/cart.svg';
+import user from '../assets/images/icons/user.svg';
+import logo from '../assets/images/icons/logo.svg';
 
 const Header = () => {
   const [activeMenu, setActiveMenu] = useState(false);
@@ -23,7 +24,7 @@ const Header = () => {
         {/* Close Button */}
         <div className="flex justify-end px-5 pt-5 pb-0">
           <button onClick={() => setActiveMenu(false)}>
-            <CloseIcon className="text-primary h-6 w-6" />
+            <img src={close} alt="Close Icon" className="text-primary h-6 w-6" />
           </button>
         </div>
 
@@ -47,12 +48,12 @@ const Header = () => {
         <div className="mt-1 flex justify-center gap-8">
           <div>
             <NavLink to="/account">
-              <UserIcon className="h-6 w-6" />
+              <img src={user} alt="User Icon" className="h-6 w-6" />
             </NavLink>
           </div>
           <div>
             <NavLink to="/cart">
-              <CartIcon className="h-6 w-6" />
+              <img src={cart} alt="Cart Icon" className="h-6 w-6" />
             </NavLink>
           </div>
         </div>
@@ -60,9 +61,9 @@ const Header = () => {
 
       {/* Header */}
       <nav className="bg-background flex w-full justify-evenly py-6 md:p-6">
-        <h3 className="text-primary h-10 font-serif text-4xl font-[550] pr-26 md:ml-12 md:mr-15">
-          Farm2You
-        </h3>
+        <div className="pt-2 pr-26 md:ml-12 md:mr-15">
+          <img src={logo} alt="Logo"/>
+        </div>
 
 
         {/* Inline menu for Desktop */}
@@ -88,12 +89,12 @@ const Header = () => {
         <div className="hidden md:flex ml-auto mr-12 gap-8">
           <button>
             <NavLink to="/account">
-              <UserIcon className="h-6 w-6" />
+              <img src={user} alt="User Icon" className="h-6 w-6" />
             </NavLink>
           </button>
           <button>
             <NavLink to="/cart">
-              <CartIcon className="h-6 w-6" />
+              <img src={cart} alt="Cart Icon" className="h-6 w-6" />
             </NavLink>
           </button>
         </div>
@@ -104,7 +105,7 @@ const Header = () => {
             onClick={() => setActiveMenu(true)}
             className="h-10 cursor-pointer md:hidden"
           >
-            <HamburgerIcon className="text-primary h-6 w-7" />
+            <img src={burger} alt="Hamburger Icon" className="text-primary h-6 w-7" />
           </button>
         )}
       </nav>
