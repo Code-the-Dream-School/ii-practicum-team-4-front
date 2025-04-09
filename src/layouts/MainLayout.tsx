@@ -1,4 +1,4 @@
-import Header from "./Header/Header";
+import Header from "../components/Header/Header";
 import { ReactNode } from "react";
 
 type MainLayoutProps = {

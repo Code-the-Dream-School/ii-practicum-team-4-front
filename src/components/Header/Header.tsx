@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import burger from '../assets/images/icons/burger.svg';
 import close from '../assets/images/icons/close.svg';
 import cart from '../assets/images/icons/cart.svg';
@@ -8,19 +8,30 @@ import logo from '../assets/images/icons/logo.svg';
 
 const Header = () => {
   const [activeMenu, setActiveMenu] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = activeMenu ? 'hidden' : 'auto';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [activeMenu]);
+
   const navLinkClasses = ({ isActive }: { isActive: boolean }) =>
     isActive
       ? 'text-background bg-primary px-4 py-2 rounded-4xl'
-      : 'hover:text-primary transition-colors';
+      : 'hover:text-primary transition-colors';  
 
   return (
-    <div className="bg-background h-screen">
+    <div className="bg-background h-screen relative ">
       {/* off-screen menu */}
       <div
-        className={`${
-          activeMenu ? 'right-0' : '-right-[400px]'
-        } bg-background absolute top-0 h-screen w-full max-w-[400px] duration-500 md:hidden`}
+        className={`fixed top-0 left-0 bg-background 
+        ${activeMenu ? 'translate-x-0' : '-translate-x-full'}
+        w-[400px] h-screen 
+        transition-transform duration-300 ease-in-out
+        md:hidden`}
       >
+
         {/* Close Button */}
         <div className="flex justify-end px-5 pt-5 pb-0">
           <button onClick={() => setActiveMenu(false)}>
@@ -29,29 +40,29 @@ const Header = () => {
         </div>
 
         <ul className="text-success mt-2 p-5 text-center text-2xl font-semibold">
-          <li className="mx-0 my-5">
+          <li onClick={() => setActiveMenu(false)} className="mx-0 my-5">
             <NavLink className={navLinkClasses} to="/">
               HOME
             </NavLink>
           </li>
           <li className="mx-0 my-5">
-            <NavLink className={navLinkClasses} to="/about">
+            <NavLink onClick={() => setActiveMenu(false)} className={navLinkClasses} to="/about">
               ABOUT
             </NavLink>
           </li>
           <li className="mx-0 my-5">
-            <NavLink className={navLinkClasses} to="/shop">
+            <NavLink onClick={() => setActiveMenu(false)} className={navLinkClasses} to="/shop">
               SHOP
             </NavLink>
           </li>
         </ul>
         <div className="mt-1 flex justify-center gap-8">
-          <div>
+          <div onClick={() => setActiveMenu(false)}>
             <NavLink to="/account">
               <img src={user} alt="User Icon" className="h-6 w-6" />
             </NavLink>
           </div>
-          <div>
+          <div onClick={() => setActiveMenu(false)}>
             <NavLink to="/cart">
               <img src={cart} alt="Cart Icon" className="h-6 w-6" />
             </NavLink>
@@ -106,8 +117,9 @@ const Header = () => {
             className="h-10 cursor-pointer md:hidden"
           >
             <img src={burger} alt="Hamburger Icon" className="text-primary h-6 w-7" />
-          </button>
+          </button>        
         )}
+      
       </nav>
     </div>
   );
