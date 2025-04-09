@@ -1,29 +1,32 @@
-import { Link } from "react-router-dom";
-import NotFoundButton from "../components/NotFoundButton";
-import notFoundImage from "/images/404.png";
+import { Link } from 'react-router-dom';
+import Button from '../components/Button';
+import notFoundImage from '../assets/images/404.png';
 
 export default function NotFoundPage() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-[var(--color-background)] text-[var(--color-primary)] text-center px-6">
-      
-      <h1 className="text-[40px] font-bold leading-[100%] max-w-[280px] mt-[135px]">
-        Oops! Page not found.
-      </h1>
-      
-      <p className="subtext max-w-[335px] mt-6 text-[var(--color-secondary)]">
-        The page you’re looking for doesn’t exist or has been moved.
-      </p>
-      
-      <div className="mt-8">
-        <Link to="/">
-          <NotFoundButton text="Go Back Home" />
+    <div className="bg-background flex min-h-screen flex-col items-center justify-end text-center">
+      <div className="flex flex-col items-center justify-center px-5">
+        <h1
+          className="text-primary font-heading mb-5 text-4xl font-bold md:text-5xl"
+          style={{ marginTop: '135px' }}
+        >
+          Oops! Page not found.
+        </h1>
+
+        <p className="text-secondary font-subtext mb-8 md:text-xl">
+          The page you&#8217;re looking for doesn&#8217;t exist or has been
+          moved.
+        </p>
+
+        <Link to={'/'}>
+          <Button text="Go Back Home" />
         </Link>
       </div>
-      
+
       <img
         src={notFoundImage}
         alt="404"
-        className="w-full max-w-[375px] h-auto mt-12"
+        className="mt-12 h-auto w-full md:w-xl"
       />
     </div>
   );
