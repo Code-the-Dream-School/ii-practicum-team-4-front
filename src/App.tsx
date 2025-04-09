@@ -11,16 +11,8 @@ import SignInPage from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
 import AccountPage from './pages/AccountPage';
 import Footer from './layout/Footer';
-import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa';
 
 const App = () => {
-  // Define the social media links
-  const socialLinks = [
-    { name: 'Facebook', url: 'https://facebook.com', icon: <FaFacebook /> },
-    { name: 'Instagram', url: 'https://instagram.com', icon: <FaInstagram /> },
-    { name: 'Twitter', url: 'https://twitter.com', icon: <FaTwitter /> },
-    { name: 'LinkedIn', url: 'https://linkedin.com', icon: <FaLinkedin /> },
-  ];
  return (
     <BrowserRouter>
       <Routes>
@@ -80,10 +72,7 @@ const App = () => {
           }
         />
       </Routes>
-      <Footer 
-        brandLogo=''
-        socialLinks={socialLinks}
-      />
+      <Footer/>
     </BrowserRouter>  
   );
 }
