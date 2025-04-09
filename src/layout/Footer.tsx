@@ -1,10 +1,10 @@
 import React from "react";
-import '.../src/index.css';
+
 
 const currentYear = new Date().getFullYear();
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-primary text-background py-6 px-4 mt-8">
+    <footer className="bg-yellow-200 text-green-800 py-6 px-4 mt-8">
       <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
         <div className="flex items-center space-x-3">
             <img
