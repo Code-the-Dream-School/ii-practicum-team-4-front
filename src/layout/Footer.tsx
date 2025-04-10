@@ -1,14 +1,17 @@
 import React from "react";
-
+import fb from '../assets/images/icons/fb.svg';
+import ig from  '../assets/images/icons/ig.svg';
+import twitter from '../assets/images/icons/twitter.svg';
+import logo from '../assets/images/logo.svg';
 
 const currentYear = new Date().getFullYear();
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-yellow-200 text-green-800 py-6 px-4 mt-8">
+    <footer className="bg-green-800 text-yellow-200 py-6 px-4 mt-8">
       <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
         <div className="flex items-center space-x-3">
             <img
-                src={"../assets/images/Logo.svg"}
+                src={logo}
                 alt="Farm2You Logo"
                 className="w-10 h-10"
             />
@@ -52,7 +55,7 @@ const Footer: React.FC = () => {
             className="hover:opacity-75"
           >
             <img
-              src={"../assets/icons/Social Icons.svg"}
+              src={fb}
               alt="Facebook"
               className="w-6 h-6"
             />
@@ -64,7 +67,7 @@ const Footer: React.FC = () => {
             className="hover:opacity-75"
           >
             <img
-              src={"../assets/icons/Social Icons-twitter.svg"}
+              src={twitter}
               alt="Twitter"
               className="w-6 h-6"
             />
@@ -76,7 +79,7 @@ const Footer: React.FC = () => {
             className="hover:opacity-75"
           >
             <img
-              src={"../assets/icons/Social Iconsinstagram.svg"}
+              src={ig}
               alt="Instagram"
               className="w-6 h-6"
             />
