@@ -1,15 +1,3 @@
-// interface ButtonProps {
-//   text: string;
-// }
-
-// export default function Button({ text }: ButtonProps) {
-//   return (
-//     <button className="btn btn-primary">
-//       {text}
-//     </button>
-//   );
-// }
-
 interface ButtonProps {
   text: string;
 }
