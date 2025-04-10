@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import fb from '../assets/images/icons/fb.svg';
 import ig from  '../assets/images/icons/ig.svg';
 import twitter from '../assets/images/icons/twitter.svg';
@@ -7,13 +8,13 @@ import logo from '../assets/images/logo.svg';
 const currentYear = new Date().getFullYear();
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-green-800 text-yellow-200 py-6 px-4 mt-8">
+    <footer className="bg-success text-background py-6 px-4 mt-8">
       <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
         <div className="flex items-center space-x-3">
             <img
                 src={logo}
                 alt="Farm2You Logo"
-                className="w-10 h-10"
+                className="w-14 h-14"
             />
           <span className="text-l font-semibold">
             <ul>
@@ -23,20 +24,20 @@ const Footer: React.FC = () => {
             </ul>
           </span>
         </div>
-        <div className=''>
-            <h3 className=''>Quick Links</h3>
-            <ul className=''>
+        <div>
+            <h3>Quick Links</h3>
+            <ul>
                 <li>
-                    <a href="/about" className=''>About Us</a>
+                    <Link to="/about">About Us</Link>
                 </li>
                 <li>
-                    <a href="/account" className=''>Account</a>
+                    <Link to="/account">Account</Link>
                 </li>
                 <li>
-                    <a href="/checkout" className=''>Checkout</a>
+                    <Link to="/checkout">Checkout</Link>
                 </li>
                 <li>
-                    <a href="/shop" className=''>Shop Now</a>
+                    <Link to="/shop">Shop Now</Link>
                 </li>
             </ul>
         </div>
