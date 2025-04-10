@@ -4,7 +4,7 @@ import notFoundImage from '../assets/images/404.png';
 
 export default function NotFoundPage() {
   return (
-    <div className="bg-background flex min-h-screen flex-col items-center justify-end text-center">
+    <div className="bg-background flex flex-col items-center justify-end text-center">
       <div className="flex flex-col items-center justify-center px-5">
         <h1
           className="text-primary font-heading mb-5 text-4xl font-bold md:text-5xl"
