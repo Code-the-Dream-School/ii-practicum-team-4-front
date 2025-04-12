@@ -1,10 +1,5 @@
-
 const CheckoutPage = () => {
-  return (
-    <div className="checkout-page">
-      
-    </div>
-  );
+  return <div className="checkout-page"></div>;
 };
 
 export default CheckoutPage;
