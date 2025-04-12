@@ -64,16 +64,16 @@ const Header = () => {
           </li>
         </ul>
         <div className="mt-1 flex justify-center gap-8">
-          <div onClick={() => setActiveMenu(false)}>
+          <button onClick={() => setActiveMenu(false)}>
             <NavLink to="/account">
               <img src={user} alt="User Icon" className="h-6 w-6" />
             </NavLink>
-          </div>
-          <div onClick={() => setActiveMenu(false)}>
+          </button>
+          <button onClick={() => setActiveMenu(false)}>
             <NavLink to="/cart">
               <img src={cart} alt="Cart Icon" className="h-6 w-6" />
             </NavLink>
-          </div>
+          </button>
         </div>
       </div>
 
