@@ -2,9 +2,11 @@ type InputWithLabelProps = {
   id: string;
   label: string;
   value: string;
+  name: string;
   placeholder?: string;
   type: string;
   required?: boolean;
+  // eslint-disable-next-line no-unused-vars
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -12,6 +14,7 @@ const InputWithLabel = ({
   id,
   label,
   value,
+  name,
   placeholder = '',
   type,
   required = true,
@@ -25,6 +28,7 @@ const InputWithLabel = ({
       <input
         id={id}
         value={value}
+        name={name}
         type={type}
         placeholder={placeholder}
         required={required}

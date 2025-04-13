@@ -1,12 +1,22 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import InputWithLabel from '../components/InputWithLabel';
-import basket from '../components/assets/images/icons/basket.svg';
 import Button from '../components/Button';
-import { NavLink } from 'react-router-dom';
+import basket from '../assets/images/basket.png';
 
 const SignInPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -25,42 +35,43 @@ const SignInPage = () => {
         </h1>
         <div>
           <InputWithLabel
-            id="fullname"
+            id="email"
             label="EMAIL"
-            value={email}
+            value={formData.email}
+            name={'email'}
             placeholder="Enter your email"
             type="email"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleChange}
           />
           <InputWithLabel
-            id="fullname"
+            id="password"
             label="PASSWORD"
-            value={password}
+            value={formData.password}
+            name={'password'}
             placeholder="Enter password"
             type="password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handleChange}
           ></InputWithLabel>
         </div>
         <p className="mb-15 pl-8 text-left md:pl-10">
-          <a
-            href="#"
-            target="_self"
+          <Link
+            to="/"
             className="text-error weight-700 underline hover:opacity-80"
           >
             Forgot password?
-          </a>
+          </Link>
         </p>
         <div className="pb-15 text-center">
           <Button text="Sign In" />
           <p className="mt-4 text-center">
-            Dont' have an account{' '}
-            <NavLink
+            Don&apos;t have an account{' '}
+            <Link
               to="/sign-up"
               target="_self"
               className="text-error weight-700 underline hover:opacity-80"
             >
               Sign Up
-            </NavLink>
+            </Link>
           </p>
         </div>
       </form>
