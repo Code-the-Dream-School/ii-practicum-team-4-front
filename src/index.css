@@ -18,6 +18,7 @@
   --color-primary-light: oklch(
     0.94 0.0335 88.06
   ); /* A lighter version of primary */
+  --color-form-light: oklch(0.97 0.0139 88.69); /* secondary color for forms*/
 
   --font-heading: 'IBM Plex Serif', serif;
   --font-subtext: 'Open Sans', sans-serif;

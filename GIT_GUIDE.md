@@ -81,9 +81,7 @@ type: short description
 ## ✅ Tips
 
 - **Keep branches focused**: One branch = one task or fix. Avoid working on multiple features or fixes in a single branch.
-  
 - **Regularly pull the latest updates from `dev`**: Always ensure your working branch is up to date with the `dev` branch to avoid conflicts and stay in sync with the latest code. Pull the latest `dev` before starting a task, and merge it into your feature branch frequently during development.
-  
 - **Make commits small and meaningful**: Each commit should address a single change, so it's easier to understand and review. This makes it easier to track down issues later if something goes wrong.
 
 - **Delete branches after the PR is merged**: Clean up by deleting your branch after your pull request has been merged to keep the repository clutter-free.
