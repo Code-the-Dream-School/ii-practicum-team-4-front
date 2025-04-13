@@ -9,5 +9,6 @@
   --color-error: oklch(0.65 0.2027 35.52); /* #EF5024 (error, danger) */
   --color-warning: oklch(0.83 0.1693 81.57); /* #FDB90A (warning) */
   --color-primary-light: oklch(0.94 0.0335 88.06); /* A lighter version of primary */
+  --color-form-light: oklch(0.97 0.0139 88.69); /* secondary color for forms*/
   --font-display: "IBM Plex Serif", "sans-serif";
 }

@@ -19,23 +19,22 @@ const Header = () => {
   const navLinkClasses = ({ isActive }: { isActive: boolean }) =>
     isActive
       ? 'text-background bg-primary px-4 py-2 rounded-4xl'
-      : 'hover:text-primary transition-colors';  
+      : 'hover:text-primary transition-colors';
 
   return (
-    <div className="bg-background h-screen relative ">
+    <div>
       {/* off-screen menu */}
       <div
-        className={`fixed top-0 left-0 bg-background 
-        ${activeMenu ? 'translate-x-0' : '-translate-x-full'}
-        w-[400px] h-screen 
-        transition-transform duration-300 ease-in-out
-        md:hidden`}
+        className={`bg-background fixed top-0 left-0 ${activeMenu ? 'translate-x-0' : '-translate-x-full'} h-screen w-[400px] transition-transform duration-300 ease-in-out md:hidden`}
       >
-
         {/* Close Button */}
         <div className="flex justify-end px-5 pt-5 pb-0">
           <button onClick={() => setActiveMenu(false)}>
-            <img src={close} alt="Close Icon" className="text-primary h-6 w-6" />
+            <img
+              src={close}
+              alt="Close Icon"
+              className="text-primary h-6 w-6"
+            />
           </button>
         </div>
 
@@ -46,39 +45,46 @@ const Header = () => {
             </NavLink>
           </li>
           <li className="mx-0 my-5">
-            <NavLink onClick={() => setActiveMenu(false)} className={navLinkClasses} to="/about">
+            <NavLink
+              onClick={() => setActiveMenu(false)}
+              className={navLinkClasses}
+              to="/about"
+            >
               ABOUT
             </NavLink>
           </li>
           <li className="mx-0 my-5">
-            <NavLink onClick={() => setActiveMenu(false)} className={navLinkClasses} to="/shop">
+            <NavLink
+              onClick={() => setActiveMenu(false)}
+              className={navLinkClasses}
+              to="/shop"
+            >
               SHOP
             </NavLink>
           </li>
         </ul>
         <div className="mt-1 flex justify-center gap-8">
-          <div onClick={() => setActiveMenu(false)}>
+          <button onClick={() => setActiveMenu(false)}>
             <NavLink to="/account">
               <img src={user} alt="User Icon" className="h-6 w-6" />
             </NavLink>
-          </div>
-          <div onClick={() => setActiveMenu(false)}>
+          </button>
+          <button onClick={() => setActiveMenu(false)}>
             <NavLink to="/cart">
               <img src={cart} alt="Cart Icon" className="h-6 w-6" />
             </NavLink>
-          </div>
+          </button>
         </div>
       </div>
 
       {/* Header */}
       <nav className="bg-background flex w-full justify-evenly py-6 md:p-6">
-        <NavLink to="/" className="pt-2 pr-26 md:ml-12 md:mr-15">
-          <img src={logo} alt="Logo"/>
+        <NavLink to="/" className="pt-2 pr-26 md:mr-15 md:ml-12">
+          <img src={logo} alt="Logo" />
         </NavLink>
 
-
         {/* Inline menu for Desktop */}
-        <ul className="text-success hidden items-center gap-x-12 text-lg font-medium m-auto md:flex">
+        <ul className="text-success m-auto hidden items-center gap-x-12 text-lg font-medium md:flex">
           <li>
             <NavLink className={navLinkClasses} to="/">
               HOME
@@ -97,7 +103,7 @@ const Header = () => {
         </ul>
 
         {/** Cart and User buttons for Desktop navigation */}
-        <div className="hidden md:flex ml-auto mr-12 gap-8">
+        <div className="mr-12 ml-auto hidden gap-8 md:flex">
           <button>
             <NavLink to="/account">
               <img src={user} alt="User Icon" className="h-6 w-6" />
@@ -116,10 +122,13 @@ const Header = () => {
             onClick={() => setActiveMenu(true)}
             className="h-10 cursor-pointer md:hidden"
           >
-            <img src={burger} alt="Hamburger Icon" className="text-primary h-6 w-7" />
-          </button>        
+            <img
+              src={burger}
+              alt="Hamburger Icon"
+              className="text-primary h-6 w-7"
+            />
+          </button>
         )}
-      
       </nav>
     </div>
   );
