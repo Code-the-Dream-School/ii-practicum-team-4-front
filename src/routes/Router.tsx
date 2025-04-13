@@ -7,7 +7,7 @@ import CheckoutPage from '../pages/CheckoutPage';
 import AccountPage from '../pages/AccountPage';
 import OrderHistoryPage from '../pages/OrderHistoryPage';
 import ThankYouPage from '../pages/ThankYouPage';
-import NotFoundPage from '../pages/404NotFound';
+import NotFoundPage from '../pages/NotFoundPage';
 import SignInPage from '../pages/SignInPage';
 import SignUpPage from '../pages/SignUpPage';
 
