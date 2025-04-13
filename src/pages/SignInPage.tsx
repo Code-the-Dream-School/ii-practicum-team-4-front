@@ -16,7 +16,7 @@ const SignInPage = () => {
     <div className="bg-background h-screen">
       <img src={basket} alt="Veggie Basket" className="mx-auto" />
       <form
-        className="bg-form-light text-primary mx-4 h-auto w-auto rounded-3xl md:w-1/3 md:mx-auto md:mb-20 md:py-20"
+        className="bg-form-light text-primary mx-4 h-auto w-auto rounded-3xl md:mx-auto md:mb-20 md:w-1/3 md:py-20"
         onSubmit={handleSubmit}
       >
         <h1 className="text-primary font-display weight-700 px-2 py-4 text-center text-4xl">
@@ -41,10 +41,27 @@ const SignInPage = () => {
             onChange={(e) => setPassword(e.target.value)}
           ></InputWithLabel>
         </div>
-        <p className="text-left pl-8 mb-15 md:pl-10"><a href="#" target="_self" className="text-error weight-700 underline hover:opacity-80">Forgot password?</a></p>
-        <div className="text-center pb-15">
-          <Button text="Sign In"/>
-          <p className="text-center mt-4">Dont' have an account <NavLink to="/sign-up" target="_self" className="text-error weight-700 underline hover:opacity-80">Sign Up</NavLink></p>
+        <p className="mb-15 pl-8 text-left md:pl-10">
+          <a
+            href="#"
+            target="_self"
+            className="text-error weight-700 underline hover:opacity-80"
+          >
+            Forgot password?
+          </a>
+        </p>
+        <div className="pb-15 text-center">
+          <Button text="Sign In" />
+          <p className="mt-4 text-center">
+            Dont' have an account{' '}
+            <NavLink
+              to="/sign-up"
+              target="_self"
+              className="text-error weight-700 underline hover:opacity-80"
+            >
+              Sign Up
+            </NavLink>
+          </p>
         </div>
       </form>
     </div>
