@@ -24,11 +24,11 @@ const AccountPage = () => {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center bg-[#fdf1dc] p-4">
+    <div className="bg-background flex min-h-screen flex-col items-center p-4">
       {/* Account Settings */}
-      <section className="border-primary/20 mt-6 w-full max-w-2xl rounded-xl border bg-[#fdf7ea] p-6 shadow">
-        <h2 className="text-success mb-4 font-bold">Account Settings</h2>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <section className="border-primary/20 mt-6 w-full max-w-2xl rounded-xl border bg-[#FAF6EC] p-6 shadow">
+        <h2 className="text-primary font-subtext mb-4">Account Settings</h2>
+        <div className="text-sucess grid grid-cols-1 gap-4 md:grid-cols-2">
           <InputWithLabel
             id="firstName"
             label="FIRST NAME"
@@ -66,15 +66,15 @@ const AccountPage = () => {
             onChange={handleChange}
           />
         </div>
-        <Link to={'/'}>
+        <Link to={'/'} cursor-pointer>
           <Button text="Save Changes" />
         </Link>
       </section>
 
       {/* Delivery Information */}
-      <section className="border-primary/20 mt-6 w-full max-w-2xl rounded-xl border bg-[#fdf7ea] p-6 shadow">
-        <h2 className="text-success mb-4 font-bold">Delivery Information</h2>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <section className="border-primary/20 mt-6 w-full max-w-2xl rounded-xl border bg-[#FAF6EC] p-6 shadow">
+        <h2 className="text-primary font-subtext mb-4">Delivery Information</h2>
+        <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
           <InputWithLabel
             id="firstName2"
             label="FIRST NAME"
@@ -113,19 +113,21 @@ const AccountPage = () => {
           />
         </div>
 
-        <InputWithLabel
-          id="address"
-          label="DELIVERY ADDRESS"
-          value={formData.address}
-          name="address"
-          type="text"
-          placeholder="Enter delivery address"
-          onChange={handleChange}
-        />
+        <div className="m-auto w-full pb-4">
+          <InputWithLabel
+            id="address"
+            label="DELIVERY ADDRESS"
+            value={formData.address}
+            name="address"
+            type="text"
+            placeholder="Enter delivery address"
+            onChange={handleChange}
+          />
+        </div>
 
-        <h2 className="text-success mb-4 font-bold">Additional Info</h2>
+        <h2 className="text-primary font-subtext mb-4">Additional Info</h2>
 
-        <div className="m-auto w-5/6 pb-4">
+        <div className="m-auto w-5/6 w-full pb-4">
           <label htmlFor="notes" className="text-success">
             ORDER NOTES (OPTIONAL)
           </label>
@@ -140,19 +142,19 @@ const AccountPage = () => {
           />
         </div>
 
-        <div className="mt-4 flex gap-4">
-          <Link to={'/'}>
+        <div className="mt-4 flex w-full flex-col gap-4 md:flex-row">
+          <Link to={'/'} cursor-pointer>
             <Button text="Save Changes" />
           </Link>
-          <Link to={'/'}>
-            <Button text="Delete" />
-          </Link>
+          <button className="border-error text-error bg-background h-14 w-64 cursor-pointer rounded-full border px-4 py-2">
+            Delete
+          </button>
         </div>
       </section>
 
       {/* aDDRESS 2 */}
       <section className="border-primary/20 mt-6 w-full max-w-2xl rounded-xl border bg-[#fdf7ea] p-6 shadow">
-        <h2 className="text-success mb-4 font-bold">Address 2</h2>
+        <h2 className="text-primary font-subtext mb-4">Address 2</h2>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <InputWithLabel
             id="firstName2"
@@ -202,9 +204,9 @@ const AccountPage = () => {
           onChange={handleChange}
         />
 
-        <h2 className="text-success mb-4 font-bold">Additional Info</h2>
+        <h2 className="text-primary font-subtext mb-4">Additional Info</h2>
 
-        <div className="m-auto w-5/6 pb-4">
+        <div className="m-auto w-5/6 w-full pb-4">
           <label htmlFor="notes" className="text-success">
             ORDER NOTES (OPTIONAL)
           </label>
@@ -219,21 +221,21 @@ const AccountPage = () => {
           />
         </div>
 
-        <div className="mt-4 flex gap-4">
-          <Link to={'/'}>
+        <div className="mt-4 flex w-full flex-col gap-4 md:flex-row">
+          <Link to={'/'} cursor-pointer>
             <Button text="Save Changes" />
           </Link>
-          <Link to={'/'}>
-            <Button text="Delete" />
-          </Link>
+          <button className="border-error text-error bg-background h-14 w-64 cursor-pointer rounded-full border px-4 py-2 pb-4">
+            Delete
+          </button>
         </div>
 
-        <h2 className="text-success mb-4 font-bold">Add Address</h2>
+        <h2 className="text-primary font-subtext mb-4 pb-4">Add Address</h2>
       </section>
 
       {/* Change Password */}
       <section className="border-primary/20 mt-6 w-full max-w-2xl rounded-xl border bg-[#fdf7ea] p-6 shadow">
-        <h2 className="text-success mb-4 text-lg font-bold">Change Password</h2>
+        <h2 className="text-primary font-subtext mb-4">Change Password</h2>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <InputWithLabel
             id="currentPassword"
@@ -263,7 +265,7 @@ const AccountPage = () => {
             onChange={handleChange}
           />
         </div>
-        <Link to={'/'}>
+        <Link to={'/'} cursor-pointer>
           <Button text="Update Password" />
         </Link>
       </section>
