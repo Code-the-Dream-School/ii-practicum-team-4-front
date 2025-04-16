@@ -36,7 +36,7 @@ const SignUpPage = () => {
     <div className="bg-background">
       <img src={basket} alt="Veggie Basket" className="mx-auto" />
       <form
-        className="bg-form-light text-primary mx-4 h-auto w-auto rounded-3xl md:mx-auto md:w-2/3 md:py-20"
+        className="md: bg-form-light text-primary mx-4 mb-20 h-auto w-auto rounded-3xl md:mx-auto md:w-2/3 md:py-20"
         onSubmit={handleSubmit}
       >
         <h1 className="text-primary font-display weight-700 px-2 py-4 text-center text-4xl">

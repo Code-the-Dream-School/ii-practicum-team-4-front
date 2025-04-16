@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Button from '../components/Button';
 import InputWithLabel from '../components/InputWithLabel';
 
 const AccountPage = () => {
@@ -64,9 +65,7 @@ const AccountPage = () => {
             onChange={handleChange}
           />
         </div>
-        <button className="bg-error text-primary-light h-14 w-64 cursor-pointer rounded-full px-10 py-3 text-center text-base font-semibold transition duration-300 ease-in-out hover:opacity-80 md:text-xl">
-          Save Changes
-        </button>
+        <Button text="Save Changes" />
       </section>
 
       {/* Delivery Information */}
@@ -141,12 +140,8 @@ const AccountPage = () => {
         </div>
 
         <div className="mt-4 flex w-full flex-col gap-4 md:flex-row">
-          <button className="bg-error text-primary-light h-14 w-64 cursor-pointer rounded-full px-10 py-3 text-center text-base font-semibold transition duration-300 ease-in-out hover:opacity-80 md:text-xl">
-            Save Changes
-          </button>
-          <button className="border-error text-error bg-background h-14 w-64 cursor-pointer rounded-full border px-4 py-2">
-            Delete
-          </button>
+          <Button text="Save Changes" type="primary" />
+          <Button text="Delete" type="secondary" />
         </div>
       </section>
 
@@ -182,9 +177,7 @@ const AccountPage = () => {
             onChange={handleChange}
           />
         </div>
-        <button className="bg-error text-primary-light h-14 w-64 cursor-pointer rounded-full px-10 py-3 text-center text-base font-semibold transition duration-300 ease-in-out hover:opacity-80 md:text-xl">
-          Update Password
-        </button>
+        <Button text="Update Password" />
       </section>
     </div>
   );

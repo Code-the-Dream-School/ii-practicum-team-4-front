@@ -4,7 +4,7 @@ import Router from './routes/Router';
 
 function App() {
   return (
-    <div className="bd-background">
+    <div className="bg-background">
       <BrowserRouter>
         <MainLayout>
           <Router />
