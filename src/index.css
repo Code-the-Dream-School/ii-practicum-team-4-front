@@ -19,7 +19,9 @@
     0.94 0.0335 88.06
   ); /* A lighter version of primary */
   --color-form-light: oklch(0.97 0.0139 88.69); /* secondary color for forms*/
-
+  
+  --color-orange: oklch(0.88 0.099 87.63); /* #F3D48A (border color) */
+  --color-beige: oklch(0.97 0.0139 88.68); /* #FAF6EC (contact card color) */
   --font-heading: 'IBM Plex Serif', serif;
   --font-subtext: 'Open Sans', sans-serif;
 }
