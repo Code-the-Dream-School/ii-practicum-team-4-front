@@ -33,7 +33,7 @@ const SignUpPage = () => {
   };
 
   return (
-    <div className="bg-background h-screen">
+    <div className="bg-background">
       <img src={basket} alt="Veggie Basket" className="mx-auto" />
       <form
         className="bg-form-light text-primary mx-4 h-auto w-auto rounded-3xl md:mx-auto md:w-2/3 md:py-20"
@@ -43,7 +43,7 @@ const SignUpPage = () => {
           {' '}
           Create Account
         </h1>
-        <div className="md:mx-30 md:flex md:flex-row md:gap-4">
+        <div className="md:mx-20 md:flex md:flex-row md:gap-4">
           <InputWithLabel
             id="fullname"
             label="NAME"
@@ -63,7 +63,7 @@ const SignUpPage = () => {
             onChange={handleChange}
           ></InputWithLabel>
         </div>
-        <div className="md:mx-30 md:flex md:flex-row md:gap-4">
+        <div className="md:mx-20 md:flex md:flex-row md:gap-4">
           <InputWithLabel
             id="password"
             label="PASSWORD"
@@ -83,7 +83,7 @@ const SignUpPage = () => {
             onChange={handleChange}
           ></InputWithLabel>
         </div>
-        <p className="mb-5 text-center md:mb-8 md:pl-30 md:text-left">
+        <p className="mb-5 text-center md:mb-8 md:pl-20 md:text-left">
           <input
             type="checkbox"
             checked={isChecked}

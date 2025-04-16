@@ -23,17 +23,17 @@ const SignInPage = () => {
   };
 
   return (
-    <div className="bg-background h-screen">
+    <div className="bg-background">
       <img src={basket} alt="Veggie Basket" className="mx-auto" />
       <form
-        className="bg-form-light text-primary mx-4 h-auto w-auto rounded-3xl md:mx-auto md:mb-20 md:w-1/3 md:py-20"
+        className="bg-form-light text-primary mx-4 h-auto w-auto rounded-3xl md:mx-auto md:mb-20 md:w-1/3 md:py-12"
         onSubmit={handleSubmit}
       >
-        <h1 className="text-primary font-display weight-700 px-2 py-4 text-center text-4xl">
+        <h1 className="text-primary font-display weight-700 pb-4 text-center text-4xl">
           {' '}
           Sign In
         </h1>
-        <div>
+        <div className="px-6">
           <InputWithLabel
             id="email"
             label="EMAIL"
@@ -61,7 +61,7 @@ const SignInPage = () => {
             Forgot password?
           </Link>
         </p>
-        <div className="pb-15 text-center">
+        <div className="text-center">
           <Button text="Sign In" />
           <p className="mt-4 text-center">
             Don&apos;t have an account{' '}

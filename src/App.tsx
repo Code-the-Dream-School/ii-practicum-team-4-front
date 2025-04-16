@@ -4,11 +4,13 @@ import Router from './routes/Router';
 
 function App() {
   return (
-    <BrowserRouter>
-      <MainLayout>
-        <Router />
-      </MainLayout>
-    </BrowserRouter>
+    <div className="bd-background">
+      <BrowserRouter>
+        <MainLayout>
+          <Router />
+        </MainLayout>
+      </BrowserRouter>
+    </div>
   );
 }
 

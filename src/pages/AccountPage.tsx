@@ -65,7 +65,7 @@ const AccountPage = () => {
           />
         </div>
         <button className="bg-error text-primary-light h-14 w-64 cursor-pointer rounded-full px-10 py-3 text-center text-base font-semibold transition duration-300 ease-in-out hover:opacity-80 md:text-xl">
-          "Save Changes"
+          Save Changes
         </button>
       </section>
 
@@ -125,7 +125,7 @@ const AccountPage = () => {
 
         <h2 className="text-primary font-subtext mb-4">Additional Info</h2>
 
-        <div className="m-auto w-5/6 pb-4">
+        <div className="w-full pb-4">
           <label htmlFor="notes" className="text-success">
             ORDER NOTES (OPTIONAL)
           </label>
@@ -142,7 +142,7 @@ const AccountPage = () => {
 
         <div className="mt-4 flex w-full flex-col gap-4 md:flex-row">
           <button className="bg-error text-primary-light h-14 w-64 cursor-pointer rounded-full px-10 py-3 text-center text-base font-semibold transition duration-300 ease-in-out hover:opacity-80 md:text-xl">
-            "Save Changes"
+            Save Changes
           </button>
           <button className="border-error text-error bg-background h-14 w-64 cursor-pointer rounded-full border px-4 py-2">
             Delete
@@ -183,7 +183,7 @@ const AccountPage = () => {
           />
         </div>
         <button className="bg-error text-primary-light h-14 w-64 cursor-pointer rounded-full px-10 py-3 text-center text-base font-semibold transition duration-300 ease-in-out hover:opacity-80 md:text-xl">
-          "Update Password"
+          Update Password
         </button>
       </section>
     </div>
