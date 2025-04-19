@@ -7,7 +7,7 @@ import twitter_red from '../assets/images/icons/twitter_red.svg';
 
 const AboutPage = () => {
   return (
-    <div className="about-page bg-background text-primary space-y-14 m-0 px-12 py-10">
+    <div className="about-page bg-background text-primary m-0 space-y-14 px-12 py-10">
       <section className="flex flex-col md:grid md:grid-cols-2 md:items-center md:gap-12">
         <div>
           <h2 className="font-heading mb-6 text-2xl font-bold md:text-4xl">
@@ -67,7 +67,7 @@ const AboutPage = () => {
           className="mb-2 h-auto w-full rounded-xl shadow-md md:mb-0"
         />
       </section>
-      <section className="text-center items-center">
+      <section className="items-center text-center">
         <h2 className="font-heading mb-2 text-2xl font-bold md:text-4xl">
           Contact Us
         </h2>
@@ -76,10 +76,10 @@ const AboutPage = () => {
           order, want to learn more about our mission, or just want to say
           hello, feel free to reach out.
         </p>
-        <div className="grid-col-1 grid mx-auto justify-items-center-safe text-left md:min-w-xl md:grid-cols-2">
-          <form className="order-1 space-y-4 rounded-xl border-2 border-orange bg-beige p-4 shadow-md md:order-2 md:p-6">
+        <div className="grid-col-1 justify-items-center-safe mx-auto grid text-left md:min-w-xl md:grid-cols-2">
+          <form className="border-orange bg-beige order-1 space-y-4 rounded-xl border-2 p-4 shadow-md md:order-2 md:p-6">
             <div className="text-left">
-              <h4 className="mb-1 text-sm md:font-bold font-semibold md:mb-2 md:text-2xl">
+              <h4 className="mb-1 text-sm font-semibold md:mb-2 md:text-2xl md:font-bold">
                 Just Say Hello!
               </h4>
               <p className="mb-8 max-w-xl text-xs font-normal md:text-base">
@@ -87,30 +87,30 @@ const AboutPage = () => {
                 possible.
               </p>
             </div>
-            <div className="mb-8 grid max-w-4xl justify-items-center-safe md:min-w-3xs grid-cols-1 text-left text-xs font-normal md:grid-cols-2 md:text-base">
-              <label htmlFor="name" className="font-bold mb-2">
-                NAME 
+            <div className="justify-items-center-safe mb-8 grid max-w-4xl grid-cols-1 text-left text-xs font-normal md:min-w-3xs md:grid-cols-2 md:text-base">
+              <label htmlFor="name" className="mb-2 font-bold">
+                NAME
                 <input
                   type="text"
                   name="name"
                   placeholder=" Enter your name"
-                  className="text-secondary rounded border py-2 text-xs mx-2"
+                  className="text-secondary mx-2 rounded border py-2 text-xs"
                 />
               </label>
               <label htmlFor="email" className="font-bold">
-                EMAIL 
+                EMAIL
                 <input
                   type="email"
                   name="email"
                   placeholder=" Enter your email"
-                  className="text-secondary rounded border py-2 text-xs mx-2"
+                  className="text-secondary mx-2 rounded border py-2 text-xs"
                 />
               </label>
             </div>
             <div className="mb-8 max-w-xl gap-2 text-left text-xs font-normal md:text-base">
               <label
                 htmlFor="message"
-                className="mb-8 max-w-xltext-left text-xs font-bold md:text-base md:font-bold"
+                className="max-w-xltext-left mb-8 text-xs font-bold md:text-base md:font-bold"
               >
                 MESSAGE
               </label>
@@ -121,18 +121,18 @@ const AboutPage = () => {
               />
               <button
                 type="submit"
-                className="bg-error text-beige h-10 w-44 md:h-14 md:w-64 rounded-full px-8 py-3 text-center text-2xs font-semibold transition duration-300 ease-in-out hover:opacity-80 md:text-base"
+                className="bg-error text-beige text-2xs h-10 w-44 rounded-full px-8 py-3 text-center font-semibold transition duration-300 ease-in-out hover:opacity-80 md:h-14 md:w-64 md:text-base"
               >
                 Send Message
               </button>
             </div>
           </form>
-          <div className="order-2 rounded-xl border-2 border-orange bg-beige p-4 text-center text-xs shadow-md md:order-1 md:max-h-85 md:max-w-60 md:pt-8 md:text-base">
+          <div className="border-orange bg-beige order-2 rounded-xl border-2 p-4 text-center text-xs shadow-md md:order-1 md:max-h-85 md:max-w-60 md:pt-8 md:text-base">
             <h4 className="font-bold">Business Hours</h4>
             <p>Mon–Fri: 9 AM – 6 PM</p>
             <p>Sat: 10 AM – 4 PM</p>
             <p>Sun: Taking a break!</p>
-            <hr className="m-4 text-orange" />
+            <hr className="text-orange m-4" />
             <div>
               <p className="font-semibold">Email</p>
               <p>example@gmail.com</p>
