@@ -24,7 +24,7 @@
 >>>>>>> a335fd3 (fix: fix colors and allignments)
   --color-orange: oklch(0.88 0.099 87.63); /* #F3D48A (border color) */
   --color-beige: oklch(0.97 0.0139 88.68); /* #FAF6EC (contact card color) */
-
+  
   --font-heading: 'IBM Plex Serif', serif;
   --font-subtext: 'Open Sans', sans-serif;
 }

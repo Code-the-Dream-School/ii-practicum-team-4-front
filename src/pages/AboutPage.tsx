@@ -121,7 +121,7 @@ const AboutPage = () => {
               />
               <button
                 type="submit"
-                className="bg-error text-light h-10 w-44 md:h-14 md:w-64 rounded-full px-8 py-3 text-center text-2xs font-semibold transition duration-300 ease-in-out hover:opacity-80 md:text-base"
+                className="bg-error text-beige h-10 w-44 md:h-14 md:w-64 rounded-full px-8 py-3 text-center text-2xs font-semibold transition duration-300 ease-in-out hover:opacity-80 md:text-base"
               >
                 Send Message
               </button>
