@@ -1,14 +1,18 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import InputWithLabel from '../components/InputWithLabel';
 import Button from '../components/Button';
 import basket from '../assets/images/basket.png';
 
 const SignInPage = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
+  const navigate = useNavigate();
+  const { setUserSession } = useAuth();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -18,8 +22,48 @@ const SignInPage = () => {
     }));
   };
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // validation
+    if (!formData.email || !formData.password) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/v1/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        // const message = `Error has ocurred: ${response.status}`;
+        console.error(`Login failed: ${errorData.message || 'Unknown error'}`);
+        alert(`Login failed: ${errorData.message || 'Unknown error'}`);
+        // throw new Error(message);
+        return;
+      }
+
+      const data = await response.json();
+      const { token } = data;
+
+      setUserSession({ token });
+
+      navigate('/account');
+    } catch (error) {
+      let errorMessage = 'Failed to register';
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      console.error(errorMessage);
+    }
   };
 
   return (
@@ -37,6 +81,7 @@ const SignInPage = () => {
           <InputWithLabel
             id="email"
             label="EMAIL"
+            // value={(formData.email = 'test@test.com')}
             value={formData.email}
             name={'email'}
             placeholder="Enter your email"
@@ -46,6 +91,7 @@ const SignInPage = () => {
           <InputWithLabel
             id="password"
             label="PASSWORD"
+            // value={(formData.password = 'testtest')}
             value={formData.password}
             name={'password'}
             placeholder="Enter password"
@@ -62,7 +108,7 @@ const SignInPage = () => {
           </Link>
         </p>
         <div className="text-center">
-          <Button text="Sign In" />
+          <Button type="submit" text="Sign In" />
           <p className="mt-4 text-center">
             Don&apos;t have an account{' '}
             <Link

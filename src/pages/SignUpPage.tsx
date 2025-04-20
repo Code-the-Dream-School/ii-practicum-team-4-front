@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import InputWithLabel from '../components/InputWithLabel';
 import Button from '../components/Button';
 import basket from '../assets/images/basket.png';
 
 const SignUpPage = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [formData, setFormData] = useState({
     fullname: '',
     email: '',
@@ -12,6 +14,8 @@ const SignUpPage = () => {
     confirmPassword: '',
   });
   const [isChecked, setIsChecked] = useState(false);
+  const navigate = useNavigate();
+  const { setUserSession } = useAuth();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -28,8 +32,59 @@ const SignUpPage = () => {
     setIsChecked(event.target.checked);
   };
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+
+    // validation
+    if (
+      !formData.fullname ||
+      !formData.email ||
+      !formData.password ||
+      !formData.confirmPassword
+    ) {
+      return;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/v1/auth/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.fullname,
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        // const message = `Error has ocurred: ${response.status}`;
+        console.error(`Login failed: ${errorData.message || 'Unknown error'}`);
+        alert(`Login failed: ${errorData.message || 'Unknown error'}`);
+        // throw new Error(message);
+        return;
+      }
+
+      const data = await response.json();
+      const { token } = data;
+
+      setUserSession({ token });
+
+      navigate('/account');
+    } catch (error) {
+      let errorMessage = 'Failed to register';
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      console.error(errorMessage);
+    }
   };
 
   return (
@@ -102,7 +157,7 @@ const SignUpPage = () => {
         </p>
 
         <div className="pb-5 text-center">
-          <Button text="Sign Up" />
+          <Button type="submit" text="Sign Up" />
           <p className="mt-4 text-center">
             Already have an account{' '}
             <Link
