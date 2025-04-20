@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import InputWithLabel from '../components/InputWithLabel';
 import Button from '../components/Button';
 import basket from '../assets/images/basket.png';
+import { useAuth } from '../contexts/AuthContext';
 
 const SignUpPage = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,8 @@ const SignUpPage = () => {
     confirmPassword: '',
   });
   const [isChecked, setIsChecked] = useState(false);
+  const auth = useAuth(); 
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -28,9 +31,55 @@ const SignUpPage = () => {
     setIsChecked(event.target.checked);
   };
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-  };
+
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    try {
+      const data = 
+        {
+          name: formData.fullname,
+          email: formData.email,
+          password: formData.password
+        };
+  
+      const response = await fetch(
+        `http://localhost:8000/api/v1/auth/register`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+  
+      if (!response.ok) {
+        const message = `Error has ocurred: ${response.status}`;
+        throw new Error(message);
+      }
+  
+      const dataResponse = await response.json();
+
+      auth.login({
+        user: dataResponse.user.name,
+        token: dataResponse.token,
+      });
+      
+      navigate('/');
+    }  catch (error) {
+        let errorMessage = "Failed to register";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        console.log(errorMessage);
+      }
+    }
+    
 
   return (
     <div className="bg-background h-screen">
@@ -102,7 +151,7 @@ const SignUpPage = () => {
         </p>
 
         <div className="pb-5 text-center">
-          <Button text="Sign Up" />
+          <Button type="submit" text="Sign Up" />
           <p className="mt-4 text-center">
             Already have an account{' '}
             <Link

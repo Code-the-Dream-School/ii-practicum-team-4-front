@@ -1,14 +1,19 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import InputWithLabel from '../components/InputWithLabel';
 import Button from '../components/Button';
 import basket from '../assets/images/basket.png';
+import { useAuth } from '../contexts/AuthContext';
 
 const SignInPage = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
+
+  const [error, setError] = useState('');
+  const auth = useAuth();
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -18,8 +23,35 @@ const SignInPage = () => {
     }));
   };
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+
+    try {
+      const body = {
+        fields: {
+          email: formData.email,
+          password: formData.password
+        },
+      };
+
+      const response = await fetch('http://localhost:8000/api/v1/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      });
+  
+        if(response.ok) {
+          const data = await response.json(); 
+          auth.login(data);
+          navigate('/');
+          } else {
+          setError('Invalid credentials');
+          }
+        } catch (error) {
+        setError('An error occurred');
+      }
   };
 
   return (
@@ -62,7 +94,7 @@ const SignInPage = () => {
           </Link>
         </p>
         <div className="pb-15 text-center">
-          <Button text="Sign In" />
+          <Button type="submit" text="Sign In" />
           <p className="mt-4 text-center">
             Don&apos;t have an account{' '}
             <Link

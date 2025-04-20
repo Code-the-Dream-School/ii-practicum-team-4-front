@@ -10,6 +10,7 @@ import ThankYouPage from '../pages/ThankYouPage';
 import NotFoundPage from '../pages/NotFoundPage';
 import SignInPage from '../pages/SignInPage';
 import SignUpPage from '../pages/SignUpPage';
+import ProtectedRoute from './ProtectedRoute';
 
 const Router = () => {
   return (
@@ -18,10 +19,12 @@ const Router = () => {
       <Route path="/shop" element={<ShopPage />} />
       <Route path="/about" element={<AboutPage />} />
       <Route path="/cart" element={<CartPage />} />
-      <Route path="/checkout" element={<CheckoutPage />} />
-      <Route path="/account" element={<AccountPage />} />
-      <Route path="/order-history" element={<OrderHistoryPage />} />
-      <Route path="/thanku" element={<ThankYouPage />} />
+      <Route element={<ProtectedRoute />}>
+        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/account" element={<AccountPage />} />
+        <Route path="/order-history" element={<OrderHistoryPage />} />
+        <Route path="/thanku" element={<ThankYouPage />} />
+      </Route>  
       <Route path="/sign-in" element={<SignInPage />} />
       <Route path="/sign-up" element={<SignUpPage />} />
       <Route path="/*" element={<NotFoundPage />} />

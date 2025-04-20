@@ -1,5 +1,6 @@
 interface ButtonProps {
   text: string;
+  type?: string;
 }
 
 const Button = ({ text }: ButtonProps) => {
