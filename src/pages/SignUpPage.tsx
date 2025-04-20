@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import InputWithLabel from '../components/InputWithLabel';
 import Button from '../components/Button';
 import basket from '../assets/images/basket.png';
-import { useAuth } from '../contexts/AuthContext';
 
 const SignUpPage = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [formData, setFormData] = useState({
     fullname: '',
     email: '',
@@ -13,8 +14,8 @@ const SignUpPage = () => {
     confirmPassword: '',
   });
   const [isChecked, setIsChecked] = useState(false);
-  const auth = useAuth(); 
   const navigate = useNavigate();
+  const { setUserSession } = useAuth();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -34,52 +35,57 @@ const SignUpPage = () => {
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
+    // validation
+    if (
+      !formData.fullname ||
+      !formData.email ||
+      !formData.password ||
+      !formData.confirmPassword
+    ) {
+      return;
+    }
+
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match");
+      alert('Passwords do not match');
       return;
     }
 
     try {
-      const data = 
-        {
+      const response = await fetch(`${API_BASE_URL}/api/v1/auth/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
           name: formData.fullname,
           email: formData.email,
-          password: formData.password
-        };
-  
-      const response = await fetch(
-        `http://localhost:8000/api/v1/auth/register`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        }
-      );
-  
-      if (!response.ok) {
-        const message = `Error has ocurred: ${response.status}`;
-        throw new Error(message);
-      }
-  
-      const dataResponse = await response.json();
-
-      auth.login({
-        user: dataResponse.user.name,
-        token: dataResponse.token,
+          password: formData.password,
+        }),
       });
-      
-      navigate('/');
-    }  catch (error) {
-        let errorMessage = "Failed to register";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        console.log(errorMessage);
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        // const message = `Error has ocurred: ${response.status}`;
+        console.error(`Login failed: ${errorData.message || 'Unknown error'}`);
+        alert(`Login failed: ${errorData.message || 'Unknown error'}`);
+        // throw new Error(message);
+        return;
       }
+
+      const data = await response.json();
+      const { token } = data;
+
+      setUserSession({ token });
+
+      navigate('/account');
+    } catch (error) {
+      let errorMessage = 'Failed to register';
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      console.error(errorMessage);
     }
-    
+  };
 
   return (
     <div className="bg-background h-screen">
