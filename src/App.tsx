@@ -4,14 +4,16 @@ import Router from './routes/Router';
 import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
-  return (   
-    <BrowserRouter>
-      <AuthProvider>
-        <MainLayout>
+  return (
+    <div className="bg-background">
+      <BrowserRouter>
+        <AuthProvider>
+          <MainLayout>
             <Router />
           </MainLayout>
-      </AuthProvider>     
-    </BrowserRouter>    
+        </AuthProvider>
+      </BrowserRouter>
+    </div>
   );
 }
 

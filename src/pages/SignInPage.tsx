@@ -67,17 +67,17 @@ const SignInPage = () => {
   };
 
   return (
-    <div className="bg-background h-screen">
+    <div className="bg-background mb-20">
       <img src={basket} alt="Veggie Basket" className="mx-auto" />
       <form
-        className="bg-form-light text-primary mx-4 h-auto w-auto rounded-3xl md:mx-auto md:mb-20 md:w-1/3 md:py-20"
+        className="bg-form-light text-primary mx-4 h-auto w-auto rounded-3xl px-6 py-12 md:mx-auto md:w-1/3"
         onSubmit={handleSubmit}
       >
-        <h1 className="text-primary font-display weight-700 px-2 py-4 text-center text-4xl">
+        <h1 className="text-primary font-heading weight-700 pb-4 text-center text-4xl">
           {' '}
           Sign In
         </h1>
-        <div>
+        <div className="">
           <InputWithLabel
             id="email"
             label="EMAIL"
@@ -107,7 +107,7 @@ const SignInPage = () => {
             Forgot password?
           </Link>
         </p>
-        <div className="pb-15 text-center">
+        <div className="text-center">
           <Button type="submit" text="Sign In" />
           <p className="mt-4 text-center">
             Don&apos;t have an account{' '}
@@ -126,118 +126,3 @@ const SignInPage = () => {
 };
 
 export default SignInPage;
-
-// import { useState } from 'react';
-// import { Link, useNavigate } from 'react-router-dom';
-// import InputWithLabel from '../components/InputWithLabel';
-// import Button from '../components/Button';
-// import basket from '../assets/images/basket.png';
-// import { useAuth } from '../contexts/AuthContext';
-
-// const SignInPage = () => {
-//   const [formData, setFormData] = useState({
-//     email: '',
-//     password: '',
-//   });
-
-//   const [error, setError] = useState('');
-//   const auth = useAuth();
-//   const navigate = useNavigate();
-
-//   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     const { name, value } = e.target;
-//     setFormData((prevData) => ({
-//       ...prevData,
-//       [name]: value,
-//     }));
-//   };
-
-//   const handleSubmit = async (e: { preventDefault: () => void }) => {
-//     e.preventDefault();
-
-//     try {
-//       const body = {
-//         fields: {
-//           email: formData.email,
-//           password: formData.password
-//         },
-//       };
-
-//       const response = await fetch('http://localhost:8000/api/v1/auth/login', {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(body),
-//       });
-
-//         if(response.ok) {
-//           const data = await response.json();
-//           auth.login(data);
-//           navigate('/');
-//           } else {
-//           setError('Invalid credentials');
-//           }
-//         } catch (error) {
-//         setError('An error occurred');
-//       }
-//   };
-
-//   return (
-//     <div className="bg-background h-screen">
-//       <img src={basket} alt="Veggie Basket" className="mx-auto" />
-//       <form
-//         className="bg-form-light text-primary mx-4 h-auto w-auto rounded-3xl md:mx-auto md:mb-20 md:w-1/3 md:py-20"
-//         onSubmit={handleSubmit}
-//       >
-//         <h1 className="text-primary font-display weight-700 px-2 py-4 text-center text-4xl">
-//           {' '}
-//           Sign In
-//         </h1>
-//         <div>
-//           <InputWithLabel
-//             id="email"
-//             label="EMAIL"
-//             value={formData.email}
-//             name={'email'}
-//             placeholder="Enter your email"
-//             type="email"
-//             onChange={handleChange}
-//           />
-//           <InputWithLabel
-//             id="password"
-//             label="PASSWORD"
-//             value={formData.password}
-//             name={'password'}
-//             placeholder="Enter password"
-//             type="password"
-//             onChange={handleChange}
-//           ></InputWithLabel>
-//         </div>
-//         <p className="mb-15 pl-8 text-left md:pl-10">
-//           <Link
-//             to="/"
-//             className="text-error weight-700 underline hover:opacity-80"
-//           >
-//             Forgot password?
-//           </Link>
-//         </p>
-//         <div className="pb-15 text-center">
-//           <Button type="submit" text="Sign In" />
-//           <p className="mt-4 text-center">
-//             Don&apos;t have an account{' '}
-//             <Link
-//               to="/sign-up"
-//               target="_self"
-//               className="text-error weight-700 underline hover:opacity-80"
-//             >
-//               Sign Up
-//             </Link>
-//           </p>
-//         </div>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default SignInPage;
