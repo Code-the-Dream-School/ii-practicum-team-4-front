@@ -21,7 +21,7 @@ const InputWithLabel = ({
   onChange,
 }: InputWithLabelProps) => {
   return (
-    <div className="m-auto flex w-full flex-col pb-4">
+    <div className="flex w-full flex-col pb-4">
       <label htmlFor={id} className="text-success">
         {label}{' '}
       </label>
