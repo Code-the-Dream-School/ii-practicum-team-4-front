@@ -140,8 +140,8 @@ const AccountPage = () => {
         </div>
 
         <div className="mt-4 flex w-full flex-col gap-4 md:flex-row">
-          <Button text="Save Changes" type="primary" />
-          <Button text="Delete" type="secondary" />
+          <Button text="Save Changes" color="primary" />
+          <Button text="Delete" color="secondary" />
         </div>
       </section>
 
