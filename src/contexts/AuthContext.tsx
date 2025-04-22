@@ -3,6 +3,7 @@ import { createContext, useContext, useState, ReactNode } from 'react';
 interface AuthContextType {
   token: string;
   isLoggedIn: boolean;
+  // eslint-disable-next-line no-unused-vars
   setUserSession: ({ token }: { token: string }) => void;
   resetUserSession: () => void;
 }
