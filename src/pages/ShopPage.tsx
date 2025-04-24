@@ -145,7 +145,6 @@ const ShopPage = () => {
       <h2 className="font-heading text-primary mb-4 text-xl font-bold">
         Produce Selection
       </h2>
-
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {products.map((product, id) => (
           <div
