@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 import { useEffect, useState } from 'react';
 import { useCart } from '../contexts/CartContext';
-=======
-import { useState } from 'react';
->>>>>>> 2d4c8a2c49336c1afab7aa3877be03cd765a9e43
 import Button from '../components/Button';
 import lettuceImg from '../assets/images/lettuce.png';
 import smallBoxImg from '../assets/images/box-small.png';
@@ -39,7 +35,6 @@ const products = Array.from({ length: 15 }, (_, i) => ({
 }));
 
 const ShopPage = () => {
-<<<<<<< HEAD
   const [selectedBoxIndex, setSelectedBoxIndex] = useState(0);
   const { cart, addToCart, total } = useCart();
 
@@ -95,12 +90,6 @@ const ShopPage = () => {
         -1
       );
     }
-=======
-  const [quantities, setQuantities] = useState<{ [key: number]: number }>({});
-
-  const handleQuantityChange = (id: number, qty: number) => {
-    setQuantities((prev) => ({ ...prev, [id]: qty }));
->>>>>>> 2d4c8a2c49336c1afab7aa3877be03cd765a9e43
   };
 
   return (
@@ -130,7 +119,6 @@ const ShopPage = () => {
 
         <div className="border-secondary bg-form-light mx-auto w-full max-w-xs self-start rounded-lg border p-4 lg:mx-0">
           <h3 className="font-heading mb-2 text-lg font-bold">Cart Total</h3>
-<<<<<<< HEAD
           <div className="mb-2 text-sm">
             {cart.length === 0 ? (
               <p>Your cart is empty.</p>
@@ -150,14 +138,6 @@ const ShopPage = () => {
             Total: <span className="font-bold">${total.toFixed(2)}</span>
           </p>
 
-=======
-          <p className="text-sm">
-            Box: <span className="font-semibold">Large x2, Small x1</span>
-          </p>
-          <p className="mb-4 text-sm">
-            Total: <span className="font-bold">$165.00</span>
-          </p>
->>>>>>> 2d4c8a2c49336c1afab7aa3877be03cd765a9e43
           <Button text="Go To Cart" type="button" color="primary" />
         </div>
       </div>
@@ -167,7 +147,6 @@ const ShopPage = () => {
       </h2>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-<<<<<<< HEAD
         {products.map((product, id) => (
           <div
             key={id}
@@ -198,37 +177,6 @@ const ShopPage = () => {
               >
                 +
               </button>
-=======
-        {products.map((product) => (
-          <div
-            key={product.id}
-            className="border-warning bg-light rounded-xl border-2 p-4 text-center shadow-sm transition hover:shadow-md"
-          >
-            <img
-              src={product.image}
-              alt={product.name}
-              className="mx-auto h-24 w-auto object-contain"
-            />
-            <h3 className="text-md font-heading text-primary mt-2 font-bold">
-              {product.name}
-            </h3>
-            <p className="text-secondary mb-2 text-xs">{product.description}</p>
-            <div className="flex flex-col items-center gap-2 sm:flex-row sm:justify-center">
-              <select
-                className="rounded-md border border-gray-300 px-2 py-1"
-                value={quantities[product.id] || 0}
-                onChange={(e) =>
-                  handleQuantityChange(product.id, parseInt(e.target.value))
-                }
-              >
-                {[...Array(6)].map((_, i) => (
-                  <option key={i} value={i}>
-                    {i}
-                  </option>
-                ))}
-              </select>
-              <Button text="+" type="button" color="primary" />
->>>>>>> 2d4c8a2c49336c1afab7aa3877be03cd765a9e43
             </div>
           </div>
         ))}
