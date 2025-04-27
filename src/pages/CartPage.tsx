@@ -35,46 +35,45 @@ const CartPage = () => {
           <span className="float-right pr-8">Quantity</span>
         </li>
         <hr className="border-yellow"></hr>
-
         {products.map((product) => (
           <>
-            <li
-              key={product.id}
-              className="bg-form-light m-2 flex flex-row justify-between border-none p-2 text-center md:justify-start"
-            >
-              <img
-                src={product.image}
-                alt={product.name}
-                className="h-10 w-auto object-contain md:h-20"
-              />
-              <p className="font-subtext text-secondary mx-2 max-w-28 overflow-hidden align-middle text-sm overflow-ellipsis whitespace-nowrap md:mt-2 md:overflow-visible md:text-left md:text-lg">
-                {product.name} <br></br>
-                <p className="text-primary">{product.weight}</p>
-              </p>
-              <div className="text-secondary flex flex-row items-center gap-2 md:gap-4 ml-auto">
-                <button
-                  className="h-8 w-8 items-center justify-center rounded-full bg-white text-black hover:opacity-80"
-                  onClick={() => handleDecrement(product.id)}
-                >
-                  -
-                </button>
-                {quantity[product.id] || 0}
-                <button
-                  className="bg-error h-8 w-8 items-center justify-center rounded-full text-white hover:opacity-80"
-                  onClick={() => handleIncrement(product.id)}
-                >
-                  +
-                </button>
-                <button>
-                  <img
-                    src={trash_can}
-                    alt="Trash Can"
-                    className="ml-4 hidden h-6 w-6 hover:opacity-80 md:block"
-                  />
-                </button>
-              </div>
-            </li>
-            <hr className="hidden border-yellow mx-2 last:hidden md:block"></hr>
+            <div key={product.id}>
+              <li className="bg-form-light m-2 flex flex-row justify-between border-none p-2 text-center md:justify-start">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="h-10 w-auto object-contain md:h-20"
+                />
+                <p className="font-subtext text-secondary mx-2 max-w-28 overflow-hidden align-middle text-sm overflow-ellipsis whitespace-nowrap md:mt-2 md:overflow-visible md:text-left md:text-lg">
+                  {product.name}
+                  <br />
+                  <span className="text-primary">{product.weight}</span>
+                </p>
+                <div className="text-secondary ml-auto flex flex-row items-center gap-2 md:gap-4">
+                  <button
+                    className="h-8 w-8 items-center justify-center rounded-full bg-white text-black hover:opacity-80"
+                    onClick={() => handleDecrement(product.id)}
+                  >
+                    -
+                  </button>
+                  <span>{quantity[product.id] || 0}</span>
+                  <button
+                    className="bg-error h-8 w-8 items-center justify-center rounded-full text-white hover:opacity-80"
+                    onClick={() => handleIncrement(product.id)}
+                  >
+                    +
+                  </button>
+                  <button>
+                    <img
+                      src={trash_can}
+                      alt="Trash Can"
+                      className="ml-4 hidden h-6 w-6 hover:opacity-80 md:block"
+                    />
+                  </button>
+                </div>
+              </li>
+            </div>
+            <hr className="border-yellow mx-2 hidden last:hidden md:block"></hr>
           </>
         ))}
       </ul>
