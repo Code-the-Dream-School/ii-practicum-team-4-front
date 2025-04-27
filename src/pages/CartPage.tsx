@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Button from '../components/Button';
 import lettuce from '../assets/images/lettuce.svg';
-import trash_can from '../assets/images/icons/trash_can.svg';
+import trash_can from '../assets/images/icons/trash_can.png';
 
 const CartPage = () => {
   const products = Array.from({ length: 15 }, (_, i) => ({
@@ -67,7 +67,7 @@ const CartPage = () => {
                     <img
                       src={trash_can}
                       alt="Trash Can"
-                      className="ml-4 hidden h-6 w-6 hover:opacity-80 md:block"
+                      className="ml-4 hidden h-6 w-5 hover:opacity-80 md:block"
                     />
                   </button>
                 </div>
