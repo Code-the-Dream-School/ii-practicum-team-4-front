@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Button from '../components/Button';
-import lettuce from '../assets/images/lettuce.svg';
-import trash_can from '../assets/images/icons/trash_can.png';
+import lettuce from '../assets/images/cabbage.png';
+import trash_can from '../assets/images/icons/trash_can.svg';
 
 const CartPage = () => {
   const products = Array.from({ length: 15 }, (_, i) => ({
