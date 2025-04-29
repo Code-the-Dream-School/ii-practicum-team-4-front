@@ -9,10 +9,11 @@ import {
 interface CartItem {
   id: number;
   name: string;
-  price: number;
   quantity: number;
   image: string;
 }
+
+type BoxSize = 'Small' | 'Medium' | 'Large';
 
 interface CartContextType {
   cart: CartItem[];
@@ -21,6 +22,7 @@ interface CartContextType {
   removeFromCart: (id: number) => void;
   clearCart: () => void;
   total: number;
+  boxSize: BoxSize;
 }
 
 const CartContext = createContext<CartContextType | null>(null);
@@ -31,6 +33,25 @@ export const useCart = (): CartContextType => {
     throw new Error('useCart must be used within a CartProvider');
   }
   return context;
+};
+
+const getBoxSize = (quantity: number): BoxSize => {
+  if (quantity <= 5) return 'Small';
+  if (quantity <= 10) return 'Medium';
+  return 'Large';
+};
+
+const getBoxPrice = (size: BoxSize): number => {
+  switch (size) {
+    case 'Small':
+      return 35;
+    case 'Medium':
+      return 45;
+    case 'Large':
+      return 55;
+    default:
+      return 0;
+  }
 };
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
@@ -72,7 +93,9 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   const clearCart = () => setCart([]);
 
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const boxSize = getBoxSize(totalItems);
+  const total = totalItems > 0 ? getBoxPrice(boxSize) : 0;
 
   return (
     <CartContext.Provider
@@ -83,6 +106,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         removeFromCart,
         clearCart,
         total,
+        boxSize,
       }}
     >
       {children}

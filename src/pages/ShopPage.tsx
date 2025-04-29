@@ -36,23 +36,14 @@ const products = Array.from({ length: 15 }, (_, i) => ({
 
 const ShopPage = () => {
   const [selectedBoxIndex, setSelectedBoxIndex] = useState(0);
-  const { cart, addToCart, total } = useCart();
+  const { cart, addToCart, total, boxSize } = useCart();
 
   useEffect(() => {
-    const totalProduceQty = cart.reduce((sum, item) => sum + item.quantity, 0);
-
-    if (totalProduceQty <= 5) {
-      setSelectedBoxIndex(0); // Small
-    } else if (totalProduceQty <= 10) {
-      setSelectedBoxIndex(1); // Medium
-    } else if (totalProduceQty <= 15) {
-      setSelectedBoxIndex(2); // Large
+    const idx = boxes.findIndex((box) => box.size === boxSize);
+    if (idx !== -1) {
+      setSelectedBoxIndex(idx);
     }
-  }, [cart]);
-
-  useEffect(() => {
-    console.log('Selected Box Index:', selectedBoxIndex);
-  }, [selectedBoxIndex]);
+  }, [boxSize]);
 
   const getProductQuantity = (id: number) => {
     return cart.find((item) => item.id === id)?.quantity || 0;
@@ -65,7 +56,6 @@ const ShopPage = () => {
         {
           id: product.id,
           name: product.name,
-          price: 5,
           image: product.image,
         },
         1
@@ -75,20 +65,18 @@ const ShopPage = () => {
 
   const decreaseProductQuantity = (productId: number) => {
     const currentQty = getProductQuantity(productId);
-    const newQty = Math.max(0, currentQty - 1);
-    if (newQty === 0) return;
-
-    const product = products.find((p) => p.id === productId);
-    if (product) {
-      addToCart(
-        {
-          id: product.id,
-          name: product.name,
-          price: 5,
-          image: product.image,
-        },
-        -1
-      );
+    if (currentQty > 0) {
+      const product = products.find((p) => p.id === productId);
+      if (product) {
+        addToCart(
+          {
+            id: product.id,
+            name: product.name,
+            image: product.image,
+          },
+          -1
+        );
+      }
     }
   };
 
@@ -99,7 +87,11 @@ const ShopPage = () => {
           {boxes.map((box, idx) => (
             <div
               key={idx}
-              className="border-warning bg-form-light rounded-xl border p-4 text-center shadow-sm transition duration-300 ease-in-out hover:scale-[1.01] hover:shadow-lg"
+              className={`rounded-xl border p-4 text-center shadow-sm transition duration-300 ease-in-out hover:scale-[1.01] hover:shadow-lg ${
+                idx === selectedBoxIndex
+                  ? 'border-orange-500 bg-orange-50'
+                  : 'border-gray-300 bg-white'
+              }`}
             >
               <h3 className="text-error font-heading text-lg font-semibold">
                 {box.size} Box
@@ -134,6 +126,10 @@ const ShopPage = () => {
             )}
           </div>
 
+          <p className="mb-1 text-sm">
+            Box Size: <span className="font-semibold">{boxSize}</span>
+          </p>
+
           <p className="mb-4 text-sm">
             Total: <span className="font-bold">${total.toFixed(2)}</span>
           </p>
@@ -146,9 +142,9 @@ const ShopPage = () => {
         Produce Selection
       </h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {products.map((product, id) => (
+        {products.map((product) => (
           <div
-            key={id}
+            key={product.id}
             className="flex flex-col items-center rounded-xl border-2 border-orange-400 bg-white p-4 shadow"
           >
             <img
