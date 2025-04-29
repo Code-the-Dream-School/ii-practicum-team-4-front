@@ -87,11 +87,7 @@ const ShopPage = () => {
           {boxes.map((box, idx) => (
             <div
               key={idx}
-              className={`rounded-xl border p-4 text-center shadow-sm transition duration-300 ease-in-out hover:scale-[1.01] hover:shadow-lg ${
-                idx === selectedBoxIndex
-                  ? 'border-orange-500 bg-orange-50'
-                  : 'border-gray-300 bg-white'
-              }`}
+              className="border-warning bg-form-light w-full rounded-xl border p-4 text-center shadow-sm transition duration-300 ease-in-out hover:scale-[1.01] hover:shadow-lg"
             >
               <h3 className="text-error font-heading text-lg font-semibold">
                 {box.size} Box
@@ -109,7 +105,7 @@ const ShopPage = () => {
           ))}
         </div>
 
-        <div className="border-secondary bg-form-light mx-auto w-full max-w-xs self-start rounded-lg border p-4 lg:mx-0">
+        <div className="border-secondarу bg-form-light mx-auto w-full max-w-xs self-start rounded-lg border p-4 lg:mx-0">
           <h3 className="font-heading mb-2 text-lg font-bold">Cart Total</h3>
           <div className="mb-2 text-sm">
             {cart.length === 0 ? (

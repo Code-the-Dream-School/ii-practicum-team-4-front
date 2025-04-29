@@ -17,8 +17,11 @@ type BoxSize = 'Small' | 'Medium' | 'Large';
 
 interface CartContextType {
   cart: CartItem[];
+  // eslint-disable-next-line no-unused-vars
   addToCart: (item: Omit<CartItem, 'quantity'>, quantity: number) => void;
+  // eslint-disable-next-line no-unused-vars
   decreaseFromCart: (id: number) => void;
+  // eslint-disable-next-line no-unused-vars
   removeFromCart: (id: number) => void;
   clearCart: () => void;
   total: number;
