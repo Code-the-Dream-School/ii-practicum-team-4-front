@@ -8,7 +8,7 @@ import twitter_red from '../assets/images/icons/twitter_red.svg';
 const AboutPage = () => {
   return (
     <div className="about-page bg-background text-primary m-2 space-y-14 px-12 py-10">
-      <section className="flex flex-col md:grid md:grid-cols-2 md:items-center md:text-lg md:gap-12">
+      <section className="flex flex-col md:grid md:grid-cols-2 md:items-center md:gap-12 md:text-lg">
         <div>
           <h2 className="font-heading mb-6 text-2xl font-bold md:text-5xl">
             Our Mission
@@ -76,7 +76,7 @@ const AboutPage = () => {
           order, want to learn more about our mission, or just want to say
           hello, feel free to reach out.
         </p>
-        <div className="grid-col-1 justify-items-center mx-auto grid text-left md:min-w-xl md:grid-cols-2">
+        <div className="grid-col-1 mx-auto grid justify-items-center text-left md:min-w-xl md:grid-cols-2">
           <form className="border-orange bg-beige order-1 space-y-4 rounded-xl border-2 p-4 shadow-md md:order-2 md:p-6">
             <div className="text-left">
               <h4 className="mb-1 text-sm font-semibold md:mb-2 md:text-2xl md:font-bold">
@@ -87,7 +87,7 @@ const AboutPage = () => {
                 possible.
               </p>
             </div>
-            <div className="justify-items-center-safe mb-8 grid max-w-4xl grid-cols-1 text-left text-xs font-normal md:min-w-3xs md:grid-cols-2 md:text-base">
+            <div className="mb-8 grid max-w-4xl grid-cols-1 justify-items-center-safe text-left text-xs font-normal md:min-w-3xs md:grid-cols-2 md:text-base">
               <label htmlFor="name" className="mb-2 font-bold">
                 NAME
                 <input
