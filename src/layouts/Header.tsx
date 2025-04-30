@@ -23,7 +23,6 @@ const Header = () => {
 
   return (
     <div className="bg-background sticky top-0">
-      {/* off-screen menu */}
       <div
         className={`bg-background fixed top-0 left-0 ${activeMenu ? 'translate-x-0' : '-translate-x-full'} h-screen w-[400px] transition-transform duration-300 ease-in-out md:hidden`}
       >
