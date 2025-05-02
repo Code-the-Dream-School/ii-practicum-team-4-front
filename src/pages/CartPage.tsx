@@ -2,6 +2,8 @@ import { useState } from 'react';
 import Button from '../components/Button';
 import lettuce from '../assets/images/cabbage.png';
 import trash_can from '../assets/images/icons/trash_can.svg';
+import { useCart } from '../contexts/CartContext';
+import { Link } from 'react-router-dom';
 
 const CartPage = () => {
   const products = Array.from({ length: 15 }, (_, i) => ({
@@ -11,20 +13,45 @@ const CartPage = () => {
     image: lettuce,
   }));
 
-  const [quantity, setQuantity] = useState<{ [key: number]: number }>({});
+  const { cart, addToCart, removeFromCart, total, boxSize } = useCart();
 
-  const handleIncrement = (productId: number) => {
-    setQuantity((prev) => ({
-      ...prev,
-      [productId]: (prev[productId] || 0) + 1,
-    }));
+  const getProductQuantity = (id: number) => {
+    return cart.find((item) => item.id === id)?.quantity || 0;
   };
 
-  const handleDecrement = (productId: number) => {
-    setQuantity((prev) => ({
-      ...prev,
-      [productId]: Math.max((prev[productId] || 0) - 1, 0),
-    }));
+  const increaseProductQuantity = (productId: number) => {
+    const product = products.find((p) => p.id === productId);
+    if (product) {
+      addToCart(
+        {
+          id: product.id,
+          name: product.name,
+          image: product.image,
+        },
+        1
+      );
+    }
+  };
+
+  const decreaseProductQuantity = (productId: number) => {
+    const currentQty = getProductQuantity(productId);
+    if (currentQty > 0) {
+      const product = products.find((p) => p.id === productId);
+      if (product) {
+        addToCart(
+          {
+            id: product.id,
+            name: product.name,
+            image: product.image,
+          },
+          -1
+        );
+      }
+    }
+  };
+
+  const handleRemoveItem = (productId: number) => {
+    removeFromCart(productId);
   };
 
   return (
@@ -52,18 +79,20 @@ const CartPage = () => {
                 <div className="text-secondary ml-auto flex flex-row items-center gap-2 md:gap-4">
                   <button
                     className="h-8 w-8 items-center justify-center rounded-full bg-white text-black hover:opacity-80"
-                    onClick={() => handleDecrement(product.id)}
+                    onClick={() => decreaseProductQuantity(product.id)}
                   >
                     -
                   </button>
-                  <span>{quantity[product.id] || 0}</span>
+                  <span className="w-8 text-center">
+                {getProductQuantity(product.id)}
+              </span>
                   <button
                     className="bg-error h-8 w-8 items-center justify-center rounded-full text-white hover:opacity-80"
-                    onClick={() => handleIncrement(product.id)}
+                    onClick={() => increaseProductQuantity(product.id)}
                   >
                     +
                   </button>
-                  <button>
+                  <button onClick={() => handleRemoveItem(product.id)}>
                     <img
                       src={trash_can}
                       alt="Trash Can"
@@ -102,7 +131,9 @@ const CartPage = () => {
           </li>
         </ul>
         <div className="text-center">
+        <Link to="/checkout" target="_self">
           <Button text="Proceed To Checkout" type="button" color="primary" />
+        </Link>
         </div>
       </div>
     </div>
