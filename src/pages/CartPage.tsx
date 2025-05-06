@@ -1,17 +1,15 @@
-import { useState } from 'react';
 import Button from '../components/Button';
-import lettuce from '../assets/images/cabbage.png';
 import trash_can from '../assets/images/icons/trash_can.svg';
 import { useCart } from '../contexts/CartContext';
 import { Link } from 'react-router-dom';
 
 const CartPage = () => {
-  const products = Array.from({ length: 15 }, (_, i) => ({
-    id: i,
-    name: 'Chinese cabbage',
-    weight: '1 pound',
-    image: lettuce,
-  }));
+  // const products = Array.from({ length: 15 }, (_, i) => ({
+  //   id: i,
+  //   name: 'Chinese cabbage',
+  //   weight: '1 pound',
+  //   image: lettuce,
+  // }));
 
   const { cart, addToCart, removeFromCart, total, boxSize } = useCart();
 
@@ -20,7 +18,7 @@ const CartPage = () => {
   };
 
   const increaseProductQuantity = (productId: number) => {
-    const product = products.find((p) => p.id === productId);
+    const product = cart.find((p) => p.id === productId);
     if (product) {
       addToCart(
         {
@@ -36,7 +34,7 @@ const CartPage = () => {
   const decreaseProductQuantity = (productId: number) => {
     const currentQty = getProductQuantity(productId);
     if (currentQty > 0) {
-      const product = products.find((p) => p.id === productId);
+      const product = cart.find((p) => p.id === productId);
       if (product) {
         addToCart(
           {
@@ -62,7 +60,7 @@ const CartPage = () => {
           <span className="float-right pr-8">Quantity</span>
         </li>
         <hr className="border-yellow"></hr>
-        {products.map((product) => (
+        {cart.map((product) => (
           <>
             <div key={product.id}>
               <li className="bg-form-light m-2 flex flex-row justify-between border-none p-2 text-center md:justify-start">
@@ -74,7 +72,7 @@ const CartPage = () => {
                 <p className="font-subtext text-secondary mx-2 max-w-28 overflow-hidden align-middle text-sm overflow-ellipsis whitespace-nowrap md:mt-2 md:overflow-visible md:text-left md:text-lg">
                   {product.name}
                   <br />
-                  <span className="text-primary">{product.weight}</span>
+                  {/* <span className="text-primary">{product.weight}</span> */}
                 </p>
                 <div className="text-secondary ml-auto flex flex-row items-center gap-2 md:gap-4">
                   <button
@@ -114,12 +112,12 @@ const CartPage = () => {
           <li className="text-secondary my-4 text-sm">
             Box:{' '}
             <span className="text-primary float-right font-semibold">
-              Large x2, Small x1
+              {boxSize}
             </span>
           </li>
           <li className="text-secondary my-4 text-sm">
             Subtotal:{' '}
-            <span className="text-primary float-right font-bold">$145.00</span>
+            <span className="text-primary float-right font-bold">${total.toFixed(2)}</span>
           </li>
           <li className="text-secondary my-4 text-sm">
             Shipping:{' '}
@@ -127,7 +125,7 @@ const CartPage = () => {
           </li>
           <li className="text-secondary mb-6 text-sm">
             Total:{' '}
-            <span className="text-primary float-right font-bold">$145.00</span>
+            <span className="text-primary float-right font-bold">${total.toFixed(2)}</span>
           </li>
         </ul>
         <div className="text-center">
