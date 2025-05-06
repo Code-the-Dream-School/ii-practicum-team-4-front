@@ -1,14 +1,15 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Button from '../components/Button';
 import InputWithLabel from '../components/InputWithLabel';
-import { Link } from 'react-router-dom';
-import lettuce from '../assets/images/cabbage.png';
+import { useCart } from '../contexts/CartContext';
 import visa from '../assets/images/visa.svg';
 import stripe from '../assets/images/stripe.svg';
 import paypal from '../assets/images/paypal.svg';
 import mastercard from '../assets/images/mastercard.svg';
 
 const CheckoutPage = () => {
+  const { cart, addToCart, removeFromCart, total, boxSize } = useCart();
   const [quantity, setQuantity] = useState<{ [key: number]: number }>({});
   const [isChecked, setIsChecked] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -27,11 +28,9 @@ const CheckoutPage = () => {
     date: '',
   });
 
-  const products = Array.from({ length: 3 }, (_, i) => ({
-    id: i,
-    name: 'Chinese cabbage',
-    image: lettuce,
-  }));
+  const getProductQuantity = (id: number) => {
+    return cart.find((item) => item.id === id)?.quantity || 0;
+  };
 
   const dates = () => {
     const datesArray = [];
@@ -54,18 +53,35 @@ const CheckoutPage = () => {
     return timeArray;
   };
 
-  const handleIncrement = (productId: number) => {
-    setQuantity((prev) => ({
-      ...prev,
-      [productId]: (prev[productId] || 0) + 1,
-    }));
+  const increaseProductQuantity = (productId: number) => {
+    const product = cart.find((p) => p.id === productId);
+    if (product) {
+      addToCart(
+        {
+          id: product.id,
+          name: product.name,
+          image: product.image,
+        },
+        1
+      );
+    }
   };
 
-  const handleDecrement = (productId: number) => {
-    setQuantity((prev) => ({
-      ...prev,
-      [productId]: Math.max((prev[productId] || 0) - 1, 0),
-    }));
+  const decreaseProductQuantity = (productId: number) => {
+    const currentQty = getProductQuantity(productId);
+    if (currentQty > 0) {
+      const product = cart.find((p) => p.id === productId);
+      if (product) {
+        addToCart(
+          {
+            id: product.id,
+            name: product.name,
+            image: product.image,
+          },
+          -1
+        );
+      }
+    }
   };
 
   const handleChange = (
@@ -227,7 +243,7 @@ const CheckoutPage = () => {
           <h3 className="font-subtext text-primary m-3 mt-5 pb-2 text-2xl font-semibold tracking-wide">
             Order Summary
           </h3>
-          {products.map((product) => (
+          {cart.map((product) => (
             <>
               <div key={product.id}>
                 <li className="bg-form-light flex flex-row justify-between border-none p-2 text-center md:justify-start">
@@ -242,14 +258,16 @@ const CheckoutPage = () => {
                   <div className="text-secondary ml-auto flex flex-row items-center gap-2 md:gap-3">
                     <button
                       className="h-7 w-7 items-center justify-center rounded-full bg-white text-black hover:opacity-80 xl:h-8 xl:w-8"
-                      onClick={() => handleDecrement(product.id)}
+                      onClick={() => decreaseProductQuantity(product.id)}
                     >
                       -
                     </button>
-                    <span>{quantity[product.id] || 0}</span>
+                    <span className="w-8 text-center">
+                      {getProductQuantity(product.id)}
+                    </span>
                     <button
                       className="bg-error h-7 w-7 items-center justify-center rounded-full text-white hover:opacity-80 xl:h-8 xl:w-8"
-                      onClick={() => handleIncrement(product.id)}
+                      onClick={() => increaseProductQuantity(product.id)}
                     >
                       +
                     </button>
@@ -261,7 +279,7 @@ const CheckoutPage = () => {
           <li className="text-secondary mx-2 flex flex-row justify-between border-none p-2 text-center text-sm">
             Box:{' '}
             <span className="text-primary float-right font-semibold">
-              Large x2, Small x1
+              {boxSize}
             </span>
           </li>
           <li className="text-secondary mx-2 flex flex-row justify-between border-none p-2 text-center text-sm">
@@ -270,7 +288,9 @@ const CheckoutPage = () => {
           </li>
           <li className="text-secondary mx-2 flex flex-row justify-between border-none p-2 text-center text-sm">
             Total:{' '}
-            <span className="text-primary float-right font-bold">$145.00</span>
+            <span className="text-primary float-right font-bold">
+              ${total.toFixed(2)}
+            </span>
           </li>
           <div>
             <h3 className="font-subtext text-primary m-3 mt-5 pb-2 text-2xl font-semibold tracking-wide">
