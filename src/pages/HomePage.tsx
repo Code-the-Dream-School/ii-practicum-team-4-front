@@ -17,19 +17,19 @@ const HomePage = () => {
           <img
             src={freshProduce1}
             alt="Fresh produce"
-            className="z-40 -mx-22 w-full min-w-60 rounded-xl"
+            className="z-0 -mx-22 w-full min-w-60 rounded-xl"
           />
         </div>
         <div className="block w-xs md:w-lg">
-          <div className="font-heading z-50 max-w-xs overflow-hidden text-2xl font-bold transition-transform hover:scale-105 md:-mx-10 md:min-w-xl md:text-6xl">
+          <div className="font-heading z-10 max-w-xs overflow-hidden text-2xl font-bold transition-transform hover:scale-105 md:-mx-10 md:min-w-xl md:text-6xl">
             <h1>Order Your</h1>
             <h1>Farm Box Today</h1>
           </div>
-          <p className="z-50 my-2 max-w-xs items-center py-2 text-[10px] md:w-2xl md:max-w-lg md:text-xl">
+          <p className="z-10 my-2 max-w-xs items-center py-2 text-[10px] md:w-2xl md:max-w-lg md:text-xl">
             Enjoy fresh, local produce delivered straight from our farm to your
             table.
           </p>
-          <button className="bg-error text-beige z-50 my-2 h-10 w-24 rounded-full px-4 py-2 text-center text-[10px] font-semibold transition duration-300 ease-in-out hover:opacity-80 md:h-14 md:w-64 md:text-base">
+          <button className="bg-error text-beige z-10 my-2 h-10 w-24 rounded-full px-4 py-2 text-center text-[10px] font-semibold transition duration-300 ease-in-out hover:opacity-80 md:h-14 md:w-64 md:text-base">
             Order Now
           </button>
         </div>
@@ -37,7 +37,7 @@ const HomePage = () => {
           <img
             src={freshProduce2}
             alt="Fresh produce"
-            className="z-60 w-full min-w-50 rounded-xl"
+            className="z-20 w-full min-w-50 rounded-xl"
           />
         </div>
       </section>
