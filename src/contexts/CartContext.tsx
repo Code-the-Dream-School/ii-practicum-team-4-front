@@ -13,6 +13,17 @@ interface CartItem {
   image: string;
 }
 
+interface CartContextType {
+  cart: CartItem[];
+  addToCart: (item: Omit<CartItem, 'quantity'>, quantity: number) => void;
+  decreaseFromCart: (id: number) => void;
+  removeFromCart: (id: number) => void;
+  clearCart: () => void;
+  total: number;
+  boxSize: BoxSize;
+  createOrder?: () => void;
+}
+
 type BoxSize = 'Small' | 'Medium' | 'Large';
 
 interface CartContextType {
@@ -38,13 +49,13 @@ export const useCart = (): CartContextType => {
   return context;
 };
 
-const getBoxSize = (quantity: number): BoxSize => {
+export const getBoxSize = (quantity: number): BoxSize => {
   if (quantity <= 5) return 'Small';
   if (quantity <= 10) return 'Medium';
   return 'Large';
 };
 
-const getBoxPrice = (size: BoxSize): number => {
+export const getBoxPrice = (size: BoxSize): number => {
   switch (size) {
     case 'Small':
       return 35;
@@ -71,10 +82,15 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setCart((prev) => {
       const existing = prev.find((i) => i.id === item.id);
       if (existing) {
+        const newQuantity = existing.quantity + quantity;
+        if (newQuantity <= 0) {
+          return prev.filter((i) => i.id !== item.id);
+        }
         return prev.map((i) =>
-          i.id === item.id ? { ...i, quantity: i.quantity + quantity } : i
+          i.id === item.id ? { ...i, quantity: newQuantity } : i
         );
       } else {
+        if (quantity <= 0) return prev; // не добавляем с 0 или отрицательным
         return [...prev, { ...item, quantity }];
       }
     });
