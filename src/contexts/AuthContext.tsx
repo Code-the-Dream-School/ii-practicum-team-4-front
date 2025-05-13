@@ -1,54 +1,42 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 interface AuthContextType {
-  token: string;
-  isLoggedIn: boolean;
-  // eslint-disable-next-line no-unused-vars
-  setUserSession: ({ token }: { token: string }) => void;
-  resetUserSession: () => void;
+  token: string | null;
+  userId: string | null;
+  login: (token: string, userId: string) => void;
+  logout: () => void;
 }
 
-const AuthContext = createContext<AuthContextType | null>(null);
+const AuthContext = createContext<AuthContextType>({
+  token: null,
+  userId: null,
+  login: () => {},
+  logout: () => {},
+});
 
-export const useAuth = (): AuthContextType => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
-};
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [token, setToken] = useState(localStorage.getItem('token'));
+  const [userId, setUserId] = useState(localStorage.getItem('userId'));
 
-interface AuthProviderProps {
-  children: ReactNode;
-}
-
-export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const initialToken = localStorage.getItem('token') || '';
-  const [token, setToken] = useState(initialToken);
-  const isLoggedIn = !!token; // Boolean(token)
-
-  // log in
-  const setUserSession = ({ token }: { token: string }) => {
-    localStorage.setItem('token', JSON.stringify(token));
-    setToken(token);
+  const login = (newToken: string, newUserId: string) => {
+    localStorage.setItem('token', newToken);
+    localStorage.setItem('userId', newUserId);
+    setToken(newToken);
+    setUserId(newUserId);
   };
 
-  // log out
-  const resetUserSession = () => {
+  const logout = () => {
     localStorage.removeItem('token');
-    setToken('');
+    localStorage.removeItem('userId');
+    setToken(null);
+    setUserId(null);
   };
 
   return (
-    <AuthContext.Provider
-      value={{
-        token,
-        isLoggedIn,
-        setUserSession,
-        resetUserSession,
-      }}
-    >
+    <AuthContext.Provider value={{ token, userId, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
+
+export const useAuth = () => useContext(AuthContext);
