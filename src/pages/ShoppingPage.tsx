@@ -38,13 +38,17 @@ const ShoppingPage = () => {
 
   useEffect(() => {
     const fetchBoxes = async () => {
-      const response = await fetch('http://localhost:8000/api/v1/boxes');
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/v1/boxes`
+      );
       const data = await response.json();
       setBoxes(data.boxes);
     };
 
     const fetchProducts = async () => {
-      const response = await fetch('http://localhost:8000/api/v1/products');
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/v1/products`
+      );
       const data = await response.json();
       setProducts(data.products);
     };
@@ -221,7 +225,7 @@ const ShoppingPage = () => {
               alt={product.name}
               className="h-32 w-32 object-contain"
             />
-            <h3 className="mt-2 font-bold">Name</h3>
+            <h3 className="mt-2 font-bold">{product.name}</h3>
             <div className="mt-2 flex items-center space-x-2">
               <button
                 className="rounded bg-gray-200 px-2"

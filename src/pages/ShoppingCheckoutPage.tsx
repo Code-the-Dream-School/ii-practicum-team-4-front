@@ -28,13 +28,17 @@ const CheckoutPage = () => {
 
   useEffect(() => {
     const fetchBoxes = async () => {
-      const response = await fetch('http://localhost:8000/api/v1/boxes');
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/v1/boxes`
+      );
       const data = await response.json();
       setBoxes(data.boxes);
     };
 
     const fetchProducts = async () => {
-      const response = await fetch('http://localhost:8000/api/v1/products');
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/v1/products`
+      );
       const data = await response.json();
       setProducts(data.products);
     };
@@ -157,7 +161,7 @@ const CheckoutPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await fetch('http://localhost:8000/api/v1/orders', {
+    await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/orders`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
