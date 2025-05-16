@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useAuth } from '../contexts/AuthContext';
 import burger from '../assets/images/icons/burger.svg';
 import close from '../assets/images/icons/close.svg';
 import cart from '../assets/images/icons/cart.svg';
@@ -7,6 +8,7 @@ import user from '../assets/images/icons/user.svg';
 import logo from '../assets/images/icons/logo.svg';
 
 const Header = () => {
+  const { isLoggedIn } = useAuth();
   const [activeMenu, setActiveMenu] = useState(false);
 
   useEffect(() => {
@@ -61,6 +63,17 @@ const Header = () => {
               SHOP
             </NavLink>
           </li>
+          {isLoggedIn && (
+            <li className="mx-0 my-5">
+              <NavLink
+                onClick={() => setActiveMenu(false)}
+                className={navLinkClasses}
+                to="/order-history"
+              >
+                ORDERS
+              </NavLink>
+            </li>
+          )}
         </ul>
         <div className="mt-1 flex justify-center gap-8">
           <button onClick={() => setActiveMenu(false)}>
@@ -99,6 +112,13 @@ const Header = () => {
               SHOP
             </NavLink>
           </li>
+          {isLoggedIn && (
+            <li>
+              <NavLink className={navLinkClasses} to="/order-history">
+                ORDERS
+              </NavLink>
+            </li>
+          )}
         </ul>
 
         {/** Cart and User buttons for Desktop navigation */}

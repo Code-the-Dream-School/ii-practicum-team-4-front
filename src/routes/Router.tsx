@@ -11,6 +11,7 @@ import ProtectedRoute from './ProtectedRoute';
 import ShoppingPage from '../pages/ShoppingPage';
 import ShoppingCartPage from '../pages/ShoppingCartPage';
 import ShoppingCheckoutPage from '../pages/ShoppingCheckoutPage';
+import OrderDetailPage from '../pages/OrderDetailPage';
 
 const Router = () => {
   return (
@@ -21,8 +22,8 @@ const Router = () => {
       <Route path="/cart" element={<ShoppingCartPage />} />
       <Route element={<ProtectedRoute />}>
         <Route path="/checkout" element={<ShoppingCheckoutPage />} />
-        <Route path="/account" element={<AccountPage />} />
-        <Route path="/order-history" element={<OrderHistoryPage />} />
+        <Route path="/account" element={<AccountPage />} /><Route path="/order-history" element={<OrderHistoryPage />} />
+        <Route path="/order-history/:id" element={<OrderDetailPage />} />
         <Route path="/thanku" element={<ThankYouPage />} />
       </Route>
       <Route path="/sign-in" element={<SignInPage />} />

@@ -1,8 +1,16 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
+import { jwtDecode } from 'jwt-decode';
+interface DecodedToken {
+  userId: string;
+  name: string;
+  iat: number;
+  exp: number;
+}
 
 interface AuthContextType {
   token: string;
   isLoggedIn: boolean;
+  userId: string | null;
   // eslint-disable-next-line no-unused-vars
   setUserSession: ({ token }: { token: string }) => void;
   resetUserSession: () => void;
@@ -22,10 +30,20 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
+const getUserIdFromToken = (token: string): string | null => {
+  try {
+    const decoded = jwtDecode<DecodedToken>(token);
+    return decoded.userId || null;
+  } catch {
+    return null;
+  }
+};
+
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const initialToken = localStorage.getItem('token') || '';
   const [token, setToken] = useState(initialToken);
   const isLoggedIn = !!token; // Boolean(token)
+  const userId = getUserIdFromToken(token);
 
   // log in
   const setUserSession = ({ token }: { token: string }) => {
@@ -44,6 +62,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       value={{
         token,
         isLoggedIn,
+        userId,
         setUserSession,
         resetUserSession,
       }}
