@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import Button from '../components/Button';
 import InputWithLabel from '../components/InputWithLabel';
+import { useAuth } from '../contexts/AuthContext';
 
 const AccountPage = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -14,12 +16,54 @@ const AccountPage = () => {
     newPassword: '',
     confirmPassword: '',
   });
+  const { setUserSession, resetUserSession } = useAuth();
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/v1/profile/address`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          phone: formData.phone,
+          email: formData.email,
+          address: formData.address,
+          additional_info: formData.notes,
+        }),
+      });
+
+      if (!response.ok) {
+        const message = `Error has ocurred: ${response.status}`;
+        throw new Error(message);
+      }
+
+      const data = await response.json();
+      const { token } = data;
+
+      setUserSession({ token });
+    } catch (error) {
+      const errorMsg =
+        error instanceof Error ? error.message : 'Failed to sign in';
+      setErrorMessage(errorMsg);
+      console.error(errorMsg);
+    }
+  };
+
+  const handleLogout = () => {
+    resetUserSession();
   };
 
   return (
@@ -140,7 +184,7 @@ const AccountPage = () => {
         </div>
 
         <div className="mt-4 flex w-full flex-col gap-4 md:flex-row">
-          <Button text="Save Changes" color="primary" />
+          <Button text="Save Changes" color="primary" onClick={handleSubmit} />
           <Button text="Delete" color="secondary" />
         </div>
       </section>
@@ -179,6 +223,9 @@ const AccountPage = () => {
         </div>
         <Button text="Update Password" />
       </section>
+      <div className="m-4">
+        <Button text="Sign Out" color="secondary" onClick={handleLogout} />
+      </div>
     </div>
   );
 };
