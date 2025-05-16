@@ -79,7 +79,7 @@ const SignUpPage = () => {
 
       setUserSession({ token });
 
-      navigate('/account');
+      navigate('/checkout');
     } catch (error) {
       const errorMsg =
         error instanceof Error ? error.message : 'Failed to sign up';

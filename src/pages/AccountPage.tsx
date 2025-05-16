@@ -18,6 +18,7 @@ const AccountPage = () => {
   });
   const { setUserSession, resetUserSession } = useAuth();
   const [errorMessage, setErrorMessage] = useState('');
+  const auth = useAuth();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -34,6 +35,7 @@ const AccountPage = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${auth.token}`,
         },
         body: JSON.stringify({
           first_name: formData.firstName,
