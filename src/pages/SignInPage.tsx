@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import InputWithLabel from '../components/InputWithLabel';
@@ -13,7 +13,17 @@ const SignInPage = () => {
   });
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
-  const { setUserSession } = useAuth();
+  const { isLoggedIn, setUserSession } = useAuth();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      if (window.history.length > 1) {
+        navigate(-1);
+      } else {
+        navigate('/');
+      }
+    }
+  }, [isLoggedIn]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -58,7 +68,7 @@ const SignInPage = () => {
 
       setUserSession({ token });
 
-      navigate('/checkout');
+      navigate(-1);
     } catch (error) {
       const errorMsg =
         error instanceof Error ? error.message : 'Failed to sign in';
