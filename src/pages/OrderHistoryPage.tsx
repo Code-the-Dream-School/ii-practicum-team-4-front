@@ -10,7 +10,11 @@ interface OrderItem {
   totalOrderPrice?: number;
   boxes: {
     items: {
-      product_id: string;
+      product_id: {
+        _id: string;
+        name: string;
+        image: string;
+      };
       weight: number;
     }[];
   }[];
@@ -64,12 +68,13 @@ const OrderHistoryPage = () => {
                   Total: ${order.totalOrderPrice?.toFixed(2) || 'N/A'}
                 </p>
               </div>
+
               <div className="mt-4 flex flex-row gap-4 md:mt-0">
                 {order.boxes?.[0]?.items?.slice(0, 3).map((item) => (
                   <img
-                    key={item.product_id}
-                    src={`/images/products/${item.product_id}.png`}
-                    alt={item.product_id}
+                    key={item.product_id._id}
+                    src={item.product_id.image}
+                    alt={item.product_id.name}
                     className="h-16 w-16 rounded object-contain"
                     onError={(e) => {
                       e.currentTarget.src =
