@@ -4,7 +4,11 @@ import Button from '../components/Button';
 import placeholderImg from '../assets/images/icons/placeholder.svg';
 
 interface ProductItem {
-  product_id: string;
+  product_id: {
+    _id: string;
+    name: string;
+    image: string;
+  };
   weight: number;
 }
 
@@ -128,44 +132,46 @@ const OrderDetailPage = () => {
 
         <div>
           <h2 className="text-primary font-subtext mb-2 text-lg">Products</h2>
-          <ul className="divide-yellow divide-y">
-            {Object.entries(
-              (order.boxes || [])
-                .flatMap((box) => box.items || [])
-                .reduce<Record<string, number>>((acc, item) => {
-                  if (!item.product_id) return acc;
-                  acc[item.product_id] =
-                    (acc[item.product_id] || 0) + (item.weight || 0);
-                  return acc;
-                }, {})
-            ).map(([productId, totalWeight]) => (
-              <li
-                key={productId}
-                className="flex items-center justify-between py-3"
-              >
-                <div className="flex items-center gap-4">
-                  <img
-                    src={`/images/products/${productId}.png`}
-                    alt={productId}
-                    className="h-12 w-12 rounded object-contain"
-                    // onError={(e) => (e.currentTarget.style.display = 'none')}
-                    onError={(e) => {
-                      e.currentTarget.onerror = null; // prevent infinite loop
-                      e.currentTarget.src = placeholderImg;
-                    }}
-                  />
-                  <div>
-                    <p className="text-primary font-medium">
-                      Product ID: {productId}
-                    </p>
-                    <p className="text-secondary text-sm">
-                      Total Weight: {totalWeight} lb
-                    </p>
-                  </div>
-                </div>
-              </li>
+          <div className="space-y-6">
+            {(order.boxes || []).map((box, boxIndex) => (
+              <div key={boxIndex}>
+                <h3 className="text-primary mb-2 font-semibold">
+                  Box {boxIndex + 1}
+                </h3>
+                <ul className="space-y-3">
+                  {box.items.map((item, itemIndex) => {
+                    const product = item.product_id;
+                    if (!product) return null;
+
+                    return (
+                      <li
+                        key={`${boxIndex}-${itemIndex}`}
+                        className="flex items-center gap-4"
+                      >
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="h-12 w-12 rounded object-contain"
+                          onError={(e) => {
+                            e.currentTarget.onerror = null;
+                            e.currentTarget.src = placeholderImg;
+                          }}
+                        />
+                        <div>
+                          <p className="text-primary font-medium">
+                            {product.name}
+                          </p>
+                          <p className="text-secondary text-sm">
+                            Weight: {item.weight} lb
+                          </p>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
     </div>
